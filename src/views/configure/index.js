@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable default-case */
 /* eslint-disable import/no-anonymous-default-export */
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import api from '../../api';
 
 export default () => {
