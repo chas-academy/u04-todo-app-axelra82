@@ -36,7 +36,7 @@ If for whatever reason the configuration setup doesn't work, or you prefer to co
 
 - Install database using SQL in [create.sql](/backend/API/Endpoint/Configure/create.sql)
 - Make sure database settings are correct in [.env](/.env)
-- Set "configured" to `true` in [configured.json](/src/public/configured.json)
+- Set "configured" to `true` in [configured.json](/public/configured.json)
 
 ## Assignment - u04 TO-DO-APP
 
