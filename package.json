@@ -1,0 +1,43 @@
+{
+	"name": "chas-academy-assignment-u04-todo",
+	"description": "Chas Academy assignment u04 todo",
+	"version": "0.1.0",
+	"author": "Axel Roussille Åberg <axel.roussilleaberg@chasacademy.se>",
+	"private": true,
+	"dependencies": {
+		"axios": "^0.21.0",
+		"react": "^17.0.1",
+		"react-dom": "^17.0.1",
+		"react-router-dom": "^5.2.0",
+		"react-scripts": "4.0.1",
+		"sass": "^1.30.0"
+	},
+	"scripts": {
+		"start": "react-scripts start "
+	},
+	"eslintConfig": {
+		"extends": [
+			"react-app",
+			"react-app/jest"
+		]
+	},
+	"browserslist": {
+		"production": [
+			">0.2%",
+			"not dead",
+			"not op_mini all"
+		],
+		"development": [
+			"last 1 chrome version",
+			"last 1 firefox version",
+			"last 1 safari version"
+		]
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/chas-academy/u04-todo-app-axelra82"
+	},
+	"bugs": {
+		"url": "https://github.com/chas-academy/u04-todo-app-axelra82/issues"
+	}
+}
