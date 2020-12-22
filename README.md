@@ -18,6 +18,10 @@ Use "." (dot) to define current folder with git clone (_"cloning into an existin
 
 ```git clone [REPO_URL] .```
 
+**Install dependencies**
+
+```npm i```
+
 **Start app**
 
 ```npm run start```
