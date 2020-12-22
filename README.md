@@ -30,9 +30,9 @@ The first time you run the app you will be asked to provide database credentials
 
 If for whatever reason the configuration setup doesn't work, or you prefer to configure the app manually you will need to:
 
-- Install database using SQL in `create.sql` -> [backend endpoint configure folder](/backend/API/Endpoints/Configure)
+- Install database using SQL in `create.sql` -> [backend endpoint configure folder](/backend/API/Endpoint/Configure)
 - Make sure database settings are correct in `.env` -> root
-- Set "configured" to `true` in file `configured.json` -> [public folder](/public)
+- Set "configured" to `true` in file `configured.json` -> [public src folder](/src/public)
 
 ## Assignment - u04 TO-DO-APP
 
