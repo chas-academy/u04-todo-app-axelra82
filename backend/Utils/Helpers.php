@@ -1,7 +1,7 @@
 <?php
 namespace NS\Utils;
 
-// Helper class for globally recurring functions
+// Helper class for global functions
 
 class Helpers{
     
@@ -10,15 +10,15 @@ class Helpers{
     }
 
     public function returnObject(
-        $success = false,
-        $message = "Return object default message.",
-        $payload = ""
+        $success    = false,
+        $message    = "Return object default message.",
+        $data       = null
     ){
         return json_encode(
             array(
                 "success"	=> $success,
                 "message"	=> $message,
-                "payload"	=> $payload,
+                "data"	    => empty($data) ? json_encode(array()) : $data,
             )
         );
     }
