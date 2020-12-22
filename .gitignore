@@ -83,7 +83,8 @@ yarn-error.log
 /coverage
 
 # production
-/build
+# Include build in repo
+# /build
 
 # misc
 .DS_Store
