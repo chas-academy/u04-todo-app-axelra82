@@ -20,8 +20,13 @@ export default async (
 			// Use data object to build endpoint during configure
 			endpointUrl = `http://${data.host}:${data.port}/backend/API/Endpoint/${endpointLocation}`
 			break;
+
 		case 'task-read':
 			endpointLocation = 'Task/Read.php';
+			break;
+
+		case 'create':
+			endpointLocation = 'Create.php';
 			break;
 	}
 
@@ -46,10 +51,7 @@ export default async (
 		// Await api response from request
 		const request = await axios(options);
 		// Success object
-		request.data.data = typeof request.data.data !== "undefined" ?
-			JSON.parse(request.data.data)
-			:
-			{};
+		request.data.data = JSON.parse(request.data.data);
 		response = request.data
 
 	} catch (error) {
@@ -57,10 +59,10 @@ export default async (
 		// Error object
 		response = {
 			success: false,
-			message: error
+			message: `in call: ${error}`
 		}
 	}
-
+	console.log(response);
 	// Return response object
 	return response;
 }
