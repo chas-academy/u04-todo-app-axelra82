@@ -6,6 +6,8 @@ namespace NS\API\Endpoint\Task;
 use NS\Utils\Database;
 use NS\Utils\Helpers;
 use NS\Object\Task;
+// Keep NS for core PHP classes
+use PDO;
 
 // Include required files
 include_once( dirname(__DIR__ , 3) .'/Utils/headers.php');
