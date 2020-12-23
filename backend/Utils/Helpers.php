@@ -18,7 +18,7 @@ class Helpers{
             array(
                 "success"	=> $success,
                 "message"	=> $message,
-                "data"	    => empty($data) ? json_encode(array()) : $data,
+                "data"	    => empty($data) ? json_encode((object)[]) : $data,
             )
         );
     }
