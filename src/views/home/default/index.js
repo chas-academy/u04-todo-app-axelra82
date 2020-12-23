@@ -9,7 +9,6 @@ export default () => {
 	// Used to refresh task lists
 	const getTasks = async () => {
 		const response = await api('task-read');
-		console.log(response);
 		setTasks(response.data);
 		return;
 	}
