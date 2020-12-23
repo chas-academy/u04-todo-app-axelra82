@@ -1,8 +1,6 @@
 <?php
 namespace NS\Object;
-use NS\Utils\Database;
 // Keep NS for core PHP classes
-use PDO;
 use PDOException;
 
 include_once( dirname(__DIR__ , 1) .'/Utils/Autoloader.php');
@@ -14,23 +12,23 @@ class Task {
 
 	public function read(){
 
-		if(!empty($this->listId)){
-			 $this->query		= "SELECT *
-			FROM
-				`{$this->table}`
-			WHERE
-				`listId`		= :listId
-			";
-		}else{
-			 $this->query		= "SELECT *
-			FROM
-				`{$this->table}`
-			WHERE
-				`listId` IS NULL
-			";
-		}
-
 		try{
+			if(!empty($this->listId)){
+					$this->query		= "SELECT *
+				FROM
+					`{$this->table}`
+				WHERE
+					`listId`		= :listId
+				";
+			}else{
+					$this->query		= "SELECT *
+				FROM
+					`{$this->table}`
+				WHERE
+					`listId` IS NULL
+				";
+			}
+
 			$stmt				= $this->connection->prepare($this->query);
 			if(!empty($this->listId)){
 				// Bind :listId from $this->listId to $stmt
