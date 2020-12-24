@@ -26,15 +26,14 @@ if($connection){
 		// Set object variables
 		$crud->connection 		= $connection;
 		$crud->table			= $data->table;
-		$crud->ids				= $data->ids;
+		$crud->ids				= is_array($data->ids) ? implode(',', $data->ids) : $data->ids;
 
 		// Create
 		$stmt 					= $crud->delete();
-		$ids					= implode(',', $crud->ids);
 		if($stmt){
 			echo $helpers->returnObject(
 				true,
-				"Deleted $ids from $crud->table",
+				"Deleted $crud->ids from $crud->table",
 			);
 		}else{
 		

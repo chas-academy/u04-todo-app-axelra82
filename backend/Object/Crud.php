@@ -60,23 +60,10 @@ class Crud {
 
 		try{
 
-			if(is_array($this->ids)){
-				// If ids is array use impoled
-				// to add comma for each value
-				// I.e. [1,2,3] = 1,2,3
-				$idsIn			= implode(',', $this->ids);
-				$this->query	= "DELETE FROM `{$this->table}` WHERE `id` IN ($idsIn)";
-			}else{
-				$this->query	= "DELETE FROM `{$this->table}` WHERE `id` = ?";
-			}
-
+			$this->query	= "DELETE FROM `{$this->table}` WHERE `id` IN ($this->ids)";
+			
 			// Prepare query
 			$stmt = $this->connection->prepare($this->query);
-
-			// If ids not array, bind single id to ?
-			if(!is_array($this->ids)){
-				$stmt->bindValue(1, $this->ids);
-			}
 
 			// Execute query
 			$stmt->execute();
