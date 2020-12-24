@@ -23,8 +23,7 @@ if($connection){
 		!empty($data->table) &&
 		!empty($data->id) &&
 		!empty($data->title) &&
-		!empty($data->description) &&
-		!empty($data->done)
+		!empty($data->description)
 	){
 		// Set object variables
 		$crud->connection 		= $connection;

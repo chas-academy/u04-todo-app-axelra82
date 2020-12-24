@@ -7,6 +7,9 @@ export default ({
 		createNew,
 		updateTask,
 		deleteTask,
+		selectList,
+		toDoList,
+		doneList
 	}
 }) => {
 	return (
@@ -39,6 +42,36 @@ export default ({
 					>
 						Delete
 					</button>
+				</li>
+
+				<li>
+					<select defaultValue="DEFAULT" onChange={selectList}>
+						<option
+							value="DEFAULT"
+							defaultValue disabled
+						>
+							Select list
+									</option>
+						<option
+							disabled={toDoList && toDoList.length > 0 ? false : true}
+							value="todo">
+							To do
+									</option>
+						<option
+							disabled={doneList && doneList.length > 0 ? false : true}
+							value="done"
+						>
+							Done
+									</option>
+						<option
+							disabled={
+								(toDoList && toDoList.length > 0) &&
+									(doneList && doneList.length > 0)
+									? false : true}
+							value="both">
+							Both
+									</option>
+					</select>
 				</li>
 
 			</ul>

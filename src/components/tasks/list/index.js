@@ -78,10 +78,8 @@ export default ({
 			}
 
 			// Toggle done state
-			listObject.done = listObject.done === 0 ? true : false;
+			listObject.done = listObject.done === 0 ? 1 : 0;
 
-			console.log(listObject);
-			console.log(table);
 			// Return promise array
 			return await api(
 				'update',
@@ -141,13 +139,58 @@ export default ({
 		}
 	}
 
+	const selectList = (e) => {
+		// Reset selected items
+		setIsSelected([]);
+
+		// Get id value from element
+		const selected = e.target.options[e.target.selectedIndex].value;
+
+		// Get lists
+		const lists = taskLists.current.childNodes;
+
+		// Handle cards in list(s)
+		const handleListCards = (list) => {
+			const cards = Array.from(list.childNodes);
+
+			// Remove first index (h1) from list
+			cards.shift();
+
+			cards.forEach(card => {
+				// Get first index (input type=checkbox)
+				const inputCheck = card.childNodes[0];
+				inputCheck.checked = true;
+				// Run select function for card
+				selectCard(inputCheck);
+			});
+		}
+
+		lists.forEach(list => {
+			if (selected !== 'both') {
+				// Handle not both option
+
+				// Define list to work with
+				const selectedList = list.id.indexOf(selected) !== -1 && list;
+
+				if (selectedList) {
+					handleListCards(selectedList);
+				}
+			} else {
+				handleListCards(list);
+			}
+		});
+	}
+
 	return (
 		<>
 			<ListActions props={{
 				isDisabled,
 				createNew,
 				updateTask,
-				deleteTask
+				deleteTask,
+				selectList,
+				toDoList,
+				doneList
 			}} />
 			<div ref={taskLists} id="tasks">
 				<section id="tasks-todo">
