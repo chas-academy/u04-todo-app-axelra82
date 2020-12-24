@@ -19,29 +19,35 @@ $connection		= $db->connection();
 
 if($connection){
 
-	// Set object variables
-	$crud->connection 		= $connection;
-	$crud->helpers			= $helpers;
-	$crud->table 			= $data->table;
-	$crud->title			= $data->title;
-	$crud->description		= $data->description;
-	$crud->id 				= empty($data->id) ? null : $data->id;
-	$crud->idObject			= empty($data->idObject) ? null : $data->idObject;
-	
-	// Create
-	$stmt 						= $crud->create();
-	if($stmt){
-		
-		echo $helpers->returnObject(
-			true,
-			"Added $crud->title ($crud->description) to $crud->table",
-		);
+	if(
+		!empty($data->table) &&
+		!empty($data->ids)
+	){
+		// Set object variables
+		$crud->connection 		= $connection;
+		$crud->table			= $data->table;
+		$crud->ids				= $data->ids;
 
+		// Create
+		$stmt 					= $crud->update();
+		$ids					= implode(',', $crud->ids);
+		if($stmt){
+			echo $helpers->returnObject(
+				true,
+				"Deleted $ids from $crud->table",
+			);
+		}else{
+		
+			echo $helpers->returnObject(
+				false,
+				"Could not delete $id from $crud->table",
+			);
+		}
 	}else{
 		
 		echo $helpers->returnObject(
 			false,
-			"Could not create $crud->title ($crud->description) in $crud->table",
+			"Missing data could not delete $crud->id from $crud->table",
 		);
 	}
 

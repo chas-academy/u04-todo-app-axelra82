@@ -5,7 +5,7 @@ use PDOException;
 
 include_once( dirname(__DIR__ , 1) .'/Utils/Autoloader.php');
 
-class Action {
+class Crud {
 	
 	private $query;
 

@@ -2,7 +2,7 @@
 namespace NS\API\Endpoint;
 use NS\Utils\Database;
 use NS\Utils\Helpers;
-use NS\Object\Action;
+use NS\Object\Crud;
 
 // Include required files
 include_once( dirname(__DIR__ , 2) .'/Utils/headers.php');
@@ -13,7 +13,7 @@ $data			= json_decode(file_get_contents("php://input"));
 
 // Instantiate object(s)
 $db				= new Database();
-$action			= new Action();
+$crud			= new Crud();
 $helpers		= new Helpers();
 $connection		= $db->connection();
 
@@ -24,30 +24,30 @@ if($connection){
 		!empty($data->ids)
 	){
 		// Set object variables
-		$action->connection 		= $connection;
-		$action->table				= $data->table;
-		$action->ids				= $data->ids;
+		$crud->connection 		= $connection;
+		$crud->table			= $data->table;
+		$crud->ids				= $data->ids;
 
 		// Create
-		$stmt 						= $action->delete();
-		$ids						= implode(',', $action->ids);
+		$stmt 					= $crud->delete();
+		$ids					= implode(',', $crud->ids);
 		if($stmt){
 			echo $helpers->returnObject(
 				true,
-				"Deleted $ids from $action->table",
+				"Deleted $ids from $crud->table",
 			);
 		}else{
 		
 			echo $helpers->returnObject(
 				false,
-				"Could not delete $id from $action->table",
+				"Could not delete $id from $crud->table",
 			);
 		}
 	}else{
 		
 		echo $helpers->returnObject(
 			false,
-			"Missing data could not delete $action->id from $action->table",
+			"Missing data could not delete $crud->id from $crud->table",
 		);
 	}
 
