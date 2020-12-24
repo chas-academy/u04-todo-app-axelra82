@@ -4,7 +4,7 @@ namespace NS\Utils;
 // Helper class for global functions
 
 class Helpers{
-    
+
     public function sanitize($string){
         return htmlspecialchars(strip_tags($string));
     }

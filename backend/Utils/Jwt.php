@@ -3,8 +3,8 @@ namespace NS\Utils;
 
 class Jwt{
 	// Init private variables
-    private $userId = null;
-    private $userName = null;
+	private $userId = null;
+	private $userName = null;
 	private $header;
 	private $payload;
 	private $b64Header;
@@ -17,7 +17,7 @@ class Jwt{
 	
 
 	// Constructor with id and password
-    public function __construct($userId, $username){
+	public function __construct($userId, $username){
 		$this->userId		= $userId;
 		$this->username		= $username;
 		$this->header		= $header;
@@ -25,7 +25,7 @@ class Jwt{
 		$this->b64Header	= $b64Header;
 		$this->b64Payload	= $b64Payload;
 		$this->signature	= $signature;
-		$this->secret		= 'dodoRaphusCucullatus!isVerySecret';
+		$this->secret		= "dodoRaphusCucullatus!isVerySecret";
 		$this->b64Signature	= $b64Signature;
 		// Timestamp
 		$this->now			= time();
@@ -36,9 +36,9 @@ class Jwt{
 	private function cleanb64($string) {
 		return str_replace(
 			[
-				'+', '/', '='
+				"+", "/", "="
 			],[
-				'-', '_', ''
+				"-", "_", ""
 			],base64_encode($string)
 		);
 	}
@@ -52,18 +52,18 @@ class Jwt{
 		// Token header
 		$this->header		= json_encode(
 			[
-				'typ'       => 'JWT',
-				'alg'       => 'HS256',
+				"typ"       => "JWT",
+				"alg"       => "HS256",
 			]
 		);
 		
 		// Token payload
 		$this->payload = json_encode(
 			[
-				'userId'	=> $this->userId,
-				'username'	=> $this->username,
-				'iat'       => $this->now,
-				'exp'       => $this->exp,
+				"userId"	=> $this->userId,
+				"username"	=> $this->username,
+				"iat"       => $this->now,
+				"exp"       => $this->exp,
 			]
 		);
 		
@@ -74,7 +74,7 @@ class Jwt{
 		$this->b64Payload	= $this->cleanb64($this->payload);
 
 		// Signature Hash
-		$this->signature          = hash_hmac(
+		$this->signature	= hash_hmac(
 			'sha256',
 			$this->b64Header . "." . $this->b64Payload,
 			$this->secret,
@@ -82,9 +82,9 @@ class Jwt{
 		);
 
 		// Base64 signature
-		$this->b64Signature       = $this->cleanb64($this->signature);
+		$this->b64Signature	= $this->cleanb64($this->signature);
 		
-		// Return JWT
+		// Return JWT with data
 		return $this->b64Header . "." . $this->b64Payload . "." . $this->b64Signature;
 	}
 }

@@ -38,11 +38,16 @@ export default async (
 			break;
 
 		case 'signup':
-			endpointLocation = 'User/Signup.php';
+			data.case = endpoint;
+			endpointLocation = 'User/index.php';
+			break;
+
+		case 'login':
+			data.case = endpoint;
+			endpointLocation = 'User/index.php';
 			break;
 	}
 
-	console.log(endpointLocation);
 	// Configured endpoint URL
 	if (endpoint !== 'configure') {
 		endpointUrl = `http://${process.env.REACT_APP_HOST}:${process.env.REACT_APP_PORT}/backend/API/Endpoint/${endpointLocation}`

@@ -1,10 +1,12 @@
 /* eslint-disable import/no-anonymous-default-export */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import api from '../../../api';
 import { TaskList } from '../../../components/tasks';
-import { UserSignup } from '../../../components/user';
+import { UserSignup, UserLogin } from '../../../components/user';
+import Context from '../../../context';
 
 export default () => {
+	const [context, setContext] = useContext(Context);
 	const [tasks, setTasks] = useState(false);
 	const table = 'tasks';
 
@@ -20,10 +22,25 @@ export default () => {
 		getTasks();
 	}, []);
 
+	const logout = () => {
+		setContext({
+			...context,
+			user: false,
+		});
+	}
 	return (
 		<div className="container">
 			<TaskList props={{ tasks, getTasks }} />
-			<UserSignup />
+			{context.user ?
+				<button onClick={logout}>
+					Log out
+				</button>
+				:
+				<>
+					<UserSignup />
+					<UserLogin />
+				</>
+			}
 		</div>
 	);
 }

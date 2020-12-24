@@ -1,5 +1,7 @@
+import UserLogin from './login';
 import UserSignup from './signup';
 
 export {
-	UserSignup
+	UserLogin,
+	UserSignup,
 }

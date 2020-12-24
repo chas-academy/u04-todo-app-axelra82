@@ -1,7 +1,11 @@
 <?php
 namespace NS\Object;
+use NS\Utils\Jwt;
 // Keep NS for core PHP classes
+use PDO;
 use PDOException;
+
+include_once( dirname(__DIR__ , 1) .'/Utils/Autoloader.php');
 
 class User{
 
@@ -9,7 +13,7 @@ class User{
 	private $query;
   
 	// Test user
-	public function test(){
+	public function get(){
 
 		try{
 			$this->query		= "SELECT * 
@@ -31,16 +35,11 @@ class User{
 			// Execute query statement
 			$stmt->execute();
 			
-			// Test for existing user
-			$rowCount 			= $stmt->rowCount();
-			if($rowCount > 0){
-				return false;
-			}
-			return true;
+			return $stmt->fetch(PDO::FETCH_ASSOC);
 
 		}catch(PDOException $e){
 
-			echo "Signup error: {$e->getMessage()}";
+			echo "Get user error: {$e->getMessage()}";
 			return false;
 		}
 	}
@@ -70,7 +69,16 @@ class User{
 
 			// Execute query statement
 			$stmt->execute();
-			return true;
+
+			$user				= $this->get();
+			$newJWT				= new Jwt($user["id"], $this->username);
+			$jwt				= $newJWT->create();
+			
+			if($jwt){
+				return true;
+			}else{
+				return false;
+			}
 
 		}catch(PDOException $e){
 
