@@ -39,14 +39,14 @@ if($connection){
 		
 			echo $helpers->returnObject(
 				false,
-				"Could not delete $id from $crud->table",
+				"Could not delete $crud->ids from $crud->table",
 			);
 		}
 	}else{
 		
 		echo $helpers->returnObject(
 			false,
-			"Missing data could not delete $crud->id from $crud->table",
+			"Missing data could not complete delete request",
 		);
 	}
 
