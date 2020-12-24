@@ -30,39 +30,49 @@ if($connection){
 		!empty($data->username) &&
 		!empty($data->password)
 	){
-		$user->connection 		= $connection;
-		$user->helpers 			= $helpers;
-		$user->username		    = $data->username;
-		$user->password 	    = password_hash($data->password, PASSWORD_DEFAULT);
+		$user->connection 				= $connection;
+		$user->helpers 					= $helpers;
+		$user->username		    		= $data->username;
+		$user->password 	    		= password_hash($data->password, PASSWORD_DEFAULT);
 		
-		$stmt					= $user->signup();
-		if($stmt){
-			$userId             = $connection->lastInsertId();
-			// Instantiate JWT
-			$newJWT             = new Jwt($userId, $user->username);
-			$jwt                = $newJWT->create();
-			
-			if($jwt){
-				echo $helpers->returnObject(
-					true,
-					"User created.",
-					json_encode([
-						'token'     => $jwt,
-						'expires'   => $exp,
-						'userId'    => $userId,
-						'username'  => $user->username,
-					]),
-				);
+		
+		$test							= $user->test();
+		if($test){
+			$signup						= $user->signup();
+			if($signup){
+				$userId					= $user->connection->lastInsertId();
+				
+				// Instantiate JWT
+				$newJWT					= new Jwt($userId, $user->username);
+				$jwt					= $newJWT->create();
+				
+				if($jwt){
+					echo $helpers->returnObject(
+						true,
+						"User created.",
+						json_encode([
+							'token'     => $jwt,
+							'expires'   => $exp,
+							'userId'    => $userId,
+							'username'  => $user->username,
+						]),
+					);
+				}else{
+					echo $helpers->returnObject(
+						false,
+						"Unable to create user token.",
+					);
+				}
 			}else{
 				echo $helpers->returnObject(
 					false,
-					"Unable to create user token.",
+					"Unable to create user.",
 				);
 			}
 		}else{
 			echo $helpers->returnObject(
 				false,
-				"Unable to create user.",
+				"Username '$user->username' already exists.",
 			);
 		}
 	}

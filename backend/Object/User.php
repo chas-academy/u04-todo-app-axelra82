@@ -8,6 +8,43 @@ class User{
 	private $table      = "users";
 	private $query;
   
+	// Test user
+	public function test(){
+
+		try{
+			$this->query		= "SELECT * 
+			FROM
+				`{$this->table}`
+			WHERE
+				`userName`		= :username
+			";
+
+			// Prepare query statement
+			$stmt       		= $this->connection->prepare($this->query);
+
+			// Sanitize
+			$this->username		= $this->helpers->sanitize($this->username);
+
+			// Bind values
+			$stmt->bindValue(":username", $this->username);
+
+			// Execute query statement
+			$stmt->execute();
+			
+			// Test for existing user
+			$rowCount 			= $stmt->rowCount();
+			if($rowCount > 0){
+				return false;
+			}
+			return true;
+
+		}catch(PDOException $e){
+
+			echo "Signup error: {$e->getMessage()}";
+			return false;
+		}
+	}
+
 	// Create user
 	public function signup(){
 
