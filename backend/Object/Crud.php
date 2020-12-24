@@ -56,6 +56,44 @@ class Crud {
 		}
 	}
 
+    public function update(){
+		
+		try{
+			$this->query          = "UPDATE 
+				`{$this->table}`
+			SET
+				`title`           = :title,
+				`description`     = :description,
+				`done`            = :done,
+				`updatedAt`       = NOW()
+			WHERE
+				`id`              = :id
+			";
+
+			// Prepare query statement
+			$stmt               = $this->connection->prepare($this->query);
+
+			// Sanitize
+			$this->title        = $this->helpers->sanitize($this->title);
+			$this->description  = $this->helpers->sanitize($this->description);
+			
+			// Bind values
+			$stmt->bindValue(":title", $this->title);
+			$stmt->bindValue(":description", $this->description);
+			$stmt->bindValue(":done", $this->done);
+			$stmt->bindValue(":id", $this->id);
+        
+        	// Execute query statement
+        	$stmt->execute();
+			return true;
+			
+        }catch(PDOException $e){
+
+			echo "Connection error: {$e->getMessage()}";
+			return false;
+		}
+	}
+	
 	public function delete(){
 
 		try{

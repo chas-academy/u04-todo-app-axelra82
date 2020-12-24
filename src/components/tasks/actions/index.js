@@ -5,6 +5,7 @@ export default ({
 	props: {
 		isDisabled,
 		createNew,
+		updateTask,
 		deleteTask,
 	}
 }) => {
@@ -17,6 +18,16 @@ export default ({
 						className="add-card"
 					>
 						New
+					</button>
+				</li>
+
+				<li className="card-action">
+					<button
+						onClick={updateTask}
+						className="update-card"
+						disabled={isDisabled}
+					>
+						Done
 					</button>
 				</li>
 

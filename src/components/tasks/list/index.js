@@ -59,6 +59,46 @@ export default ({
 		setCreateForm(true);
 	}
 
+	const updateTask = async () => {
+
+		// Map selected array with promise array returned
+		const selected = isSelected.map(async (object) => {
+			let listObject;
+			switch (object.list) {
+				case 'todo':
+					listObject = toDoList.find(listObject => listObject.id === object.id);
+					break;
+				case 'done':
+					listObject = doneList.find(listObject => listObject.id === object.id);
+					break;
+
+				default:
+					listObject = false;
+					break;
+			}
+
+			// Toggle done state
+			listObject.done = listObject.done === 0 ? true : false;
+
+			console.log(listObject);
+			console.log(table);
+			// Return promise array
+			return await api(
+				'update',
+				{
+					...listObject,
+					table
+				}
+			);
+		});
+
+		// Wait for all objects to finish
+		await Promise.all(selected);
+
+		// Run finalize action function
+		finalizeAction();
+	}
+
 	const deleteTask = () => {
 		// Create array with ids from selected objects
 		const ids = isSelected.map(obj => obj.id);
@@ -106,6 +146,7 @@ export default ({
 			<ListActions props={{
 				isDisabled,
 				createNew,
+				updateTask,
 				deleteTask
 			}} />
 			<div ref={taskLists} id="tasks">

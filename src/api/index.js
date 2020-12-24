@@ -29,6 +29,10 @@ export default async (
 			endpointLocation = 'Create.php';
 			break;
 
+		case 'update':
+			endpointLocation = 'Update.php';
+			break;
+
 		case 'delete':
 			endpointLocation = 'Delete.php';
 			break;
