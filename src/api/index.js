@@ -21,8 +21,8 @@ export default async (
 			endpointUrl = `http://${data.host}:${data.port}/backend/API/Endpoint/${endpointLocation}`
 			break;
 
-		case 'task-read':
-			endpointLocation = 'Task/Read.php';
+		case 'read':
+			endpointLocation = 'Read.php';
 			break;
 
 		case 'create':

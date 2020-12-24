@@ -5,10 +5,11 @@ import { TaskList } from '../../../components/tasks';
 
 export default () => {
 	const [tasks, setTasks] = useState(false);
+	const table = 'tasks';
 
 	// Used to refresh task lists
 	const getTasks = async () => {
-		const response = await api('task-read');
+		const response = await api('read', { table });
 		setTasks(response.data);
 		return;
 	}
