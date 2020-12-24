@@ -28,12 +28,18 @@ export default async (
 		case 'create':
 			endpointLocation = 'Create.php';
 			break;
+
+		case 'delete':
+			endpointLocation = 'Delete.php';
+			break;
 	}
 
 	// Configured endpoint URL
 	if (endpoint !== 'configure') {
 		endpointUrl = `http://${process.env.REACT_APP_HOST}:${process.env.REACT_APP_PORT}/backend/API/Endpoint/${endpointLocation}`
 	}
+
+	console.log(endpointUrl);
 
 	try {
 

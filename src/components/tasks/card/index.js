@@ -4,6 +4,7 @@ import React from 'react';
 export default ({
 	props: {
 		task,
+		selectCard
 	},
 }) => {
 
@@ -40,6 +41,7 @@ export default ({
 				type="checkbox"
 				name={`card-${id}`}
 				className="input-checkbox"
+				onChange={(e) => selectCard(e.target)}
 			/>
 
 			<h1 className="title">

@@ -19,29 +19,35 @@ $connection		= $db->connection();
 
 if($connection){
 
-	// Set object variables
-	$action->connection 		= $connection;
-	$action->helpers			= $helpers;
-	$action->table 				= $data->table;
-	$action->title				= $data->title;
-	$action->description		= $data->description;
-	$action->id 				= empty($data->id) ? null : $data->id;
-	$action->idObject			= empty($data->idObject) ? null : $data->idObject;
-	
-	// Create
-	$stmt 						= $action->create();
-	if($stmt){
-		
-		echo $helpers->returnObject(
-			true,
-			"Added $action->title ($action->description) to $action->table",
-		);
+	if(
+		!empty($data->table) &&
+		!empty($data->ids)
+	){
+		// Set object variables
+		$action->connection 		= $connection;
+		$action->table				= $data->table;
+		$action->ids				= $data->ids;
 
+		// Create
+		$stmt 						= $action->delete();
+		$ids						= implode(',', $action->ids);
+		if($stmt){
+			echo $helpers->returnObject(
+				true,
+				"Deleted $ids from $action->table",
+			);
+		}else{
+		
+			echo $helpers->returnObject(
+				false,
+				"Could not delete $id from $action->table",
+			);
+		}
 	}else{
 		
 		echo $helpers->returnObject(
 			false,
-			"Could not create $action->title ($action->description) in $action->table",
+			"Missing data could not delete $action->id from $action->table",
 		);
 	}
 

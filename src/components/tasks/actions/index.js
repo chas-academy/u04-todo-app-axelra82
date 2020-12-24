@@ -3,7 +3,9 @@ import React from 'react';
 
 export default ({
 	props: {
+		isDisabled,
 		createNew,
+		deleteTask,
 	}
 }) => {
 	return (
@@ -17,6 +19,17 @@ export default ({
 						New
 					</button>
 				</li>
+
+				<li className="card-action">
+					<button
+						onClick={deleteTask}
+						className="delete-card"
+						disabled={isDisabled}
+					>
+						Delete
+					</button>
+				</li>
+
 			</ul>
 		</div>
 	);
