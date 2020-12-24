@@ -211,13 +211,18 @@ export default ({
 										key={`task-todo-${task.id}-${i}`}
 										props={{
 											task,
-											selectCard
+											selectCard,
 										}}
 									/>
 								);
 							})
 							:
-							<>No tasks</>
+							<CreateForm props={{
+								table,
+								id: listId,
+								setCreateForm,
+								refresh: getTasks,
+							}} />
 					}
 				</section>
 				<section id="tasks-done">
