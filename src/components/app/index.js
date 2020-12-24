@@ -8,7 +8,9 @@ import axios from 'axios';
 
 export default withRouter(() => {
 	const [context, setContext] = useState({
+		appUser: process.env.REACT_APP_APPNAME,
 		working: true,
+		user: false,
 	});
 
 	// Run once initially using empty array
