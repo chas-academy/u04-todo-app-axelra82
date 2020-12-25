@@ -76,7 +76,12 @@ class User{
 			$jwt				= $newJWT->create();
 			
 			if($jwt){
-				return $jwt;
+				return json_encode(
+					array(
+						"token"		=> $jwt,
+						"username"	=> $this->username,
+					)
+				);
 			}else{
 				$this->delete();
 				return false;

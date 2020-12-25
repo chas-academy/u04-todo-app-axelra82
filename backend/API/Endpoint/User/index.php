@@ -50,7 +50,7 @@ if($connection){
 					echo $helpers->returnObject(
 						true,
 						"User created.",
-						json_encode($signup),
+						$signup,
 					);
 
 				}else{
