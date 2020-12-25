@@ -1,5 +1,6 @@
 /* eslint-disable import/no-anonymous-default-export */
 import React, { useState, useContext } from 'react';
+import { useHistory } from 'react-router-dom';
 import Context from '../../../context';
 import api from '../../../api';
 
@@ -7,6 +8,7 @@ export default () => {
 	const [context, setContext] = useContext(Context);
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
+	const history = useHistory();
 
 	const handleSubmit = async e => {
 		e.preventDefault();
@@ -20,11 +22,14 @@ export default () => {
 		);
 		console.log(response);
 		if (response.success) {
+			// Persist signup/login
 			localStorage.setItem(context.appUser, JSON.stringify(response.data));
 			setContext({
 				...context,
 				user: true,
 			});
+			// Change route to user page
+			history.push("/user");
 		} else {
 			alert(response.message);
 		}

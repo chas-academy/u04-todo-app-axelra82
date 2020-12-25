@@ -9,7 +9,6 @@ import axios from 'axios';
 export default withRouter(() => {
 	const [context, setContext] = useState({
 		appUser: process.env.REACT_APP_APPNAME,
-		working: true,
 		user: false,
 		userId: null,
 		username: null,
@@ -62,7 +61,6 @@ export default withRouter(() => {
 			}
 			setContext({
 				...context,
-				working: false,
 				configured,
 				user,
 				userId,
