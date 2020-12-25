@@ -21,7 +21,7 @@ export default () => {
 			);
 
 			if (response.success) {
-				// localStorage.setItem(context.appUser, JSON.stringify(response.message));
+				localStorage.setItem(context.appUser, JSON.stringify(response.data));
 				setContext({
 					...context,
 					user: true,

@@ -10,9 +10,10 @@ include_once( dirname(__DIR__ , 1) .'/Utils/Autoloader.php');
 class User{
 
 	private $table      = "users";
+	private $user		= null;
 	private $query;
   
-	// Test user
+	// Get user
 	public function get(){
 
 		try{
@@ -70,19 +71,44 @@ class User{
 			// Execute query statement
 			$stmt->execute();
 
-			$user				= $this->get();
-			$newJWT				= new Jwt($user["id"], $this->username);
+			$this->user			= $this->get();
+			$newJWT				= new Jwt($this->user["id"], $this->username);
 			$jwt				= $newJWT->create();
 			
 			if($jwt){
-				return true;
+				return $jwt;
 			}else{
+				$this->delete();
 				return false;
 			}
 
 		}catch(PDOException $e){
 
 			echo "Signup error: {$e->getMessage()}";
+			return false;
+		}
+	}
+
+	// Delete user
+	public function delete(){
+
+		try{
+
+			$this->query	= "DELETE FROM `{$this->table}` WHERE `id` = ?";
+			
+			// Prepare query
+			$stmt = $this->connection->prepare($this->query);
+
+			// Bind value
+			$stmt->bindValue(1, $this->user["id"]);
+
+			// Execute query
+			$stmt->execute();
+			return true;
+
+		}catch(PDOException $e){
+
+			echo "Connection error: {$e->getMessage()}";
 			return false;
 		}
 	}

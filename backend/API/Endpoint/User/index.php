@@ -50,6 +50,7 @@ if($connection){
 					echo $helpers->returnObject(
 						true,
 						"User created.",
+						json_encode($signup),
 					);
 
 				}else{
@@ -68,14 +69,21 @@ if($connection){
 
 					// Check if the password matches using password_verify()
 					if (password_verify($data->password, $getUser["userPass"])){
-						$newJWT		= new Jwt($getUser["id"], $username);
+						$newJWT		= new Jwt($getUser["id"], $user->username);
 						$jwt		= $newJWT->create();
 						
-						echo $helpers->returnObject(
-							true,
-							"User logged in.",
-							json_encode($jwt),
-						);
+						if($jwt){
+							echo $helpers->returnObject(
+								true,
+								"User logged in.",
+								json_encode($jwt),
+							);
+						}else{
+							echo $helpers->returnObject(
+								true,
+								"Could not create toke. User logged in.",
+							);
+						}
 					}else{
 						echo $helpers->returnObject(
 							false,
