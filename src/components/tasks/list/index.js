@@ -113,7 +113,7 @@ export default ({
 		currDescription.contentEditable = false;
 		setSaveButton(false);
 
-		const reponse = await api(
+		await api(
 			'update',
 			{
 				table,

@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable import/no-anonymous-default-export */
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import Context from '../../../context';
 import api from '../../../api';
@@ -10,16 +10,21 @@ import CreateForm from '../../../components/create-form';
 
 export default () => {
 	const [context] = useContext(Context);
+	const titleRef = useRef();
+	const descriptionRef = useRef();
+	const userId = context.userId;
 	const [lists, setLists] = useState([]);
 	const [taskList, setTaskList] = useState([]);
 	const [createForm, setCreateForm] = useState(false);
-	const userId = context.userId;
+	const [saveButton, setSaveButton] = useState(false);
+	const [listTitle, setListTitle] = useState('');
 
 	const getTasks = async () => {
 
 		if (lists.length) {
 			const getListTasks = lists.map(async list => {
 				const { id, title, description } = list;
+				setListTitle(title);
 				const response = await api(
 					'read',
 					{
@@ -63,17 +68,41 @@ export default () => {
 		return;
 	}
 
-	const createList = async (e) => {
-		e.preventDefault();
+	const createList = async (el) => {
+		el.preventDefault();
 		setCreateForm(true);
 	}
-	const editList = (e, listId, listName) => {
-		e.preventDefault();
-		alert(`edit list ${listName} (id: ${listId})`);
+	const editList = (ref) => {
+		setSaveButton(true);
+		ref.current.contentEditable = true;
 	}
 
-	const deleteList = async (e, listId, listName) => {
-		e.preventDefault();
+	const saveList = async (listId, title, description) => {
+		const currTitle = title.current;
+		const currDescription = description.current;
+
+		const newTitle = currTitle.innerHTML;
+		const newDescription = currDescription.innerHTML;
+
+		currTitle.contentEditable = false;
+		currDescription.contentEditable = false;
+
+		setListTitle(newTitle);
+		setSaveButton(false);
+
+		await api(
+			'update',
+			{
+				table: 'lists',
+				id: listId,
+				title: newTitle,
+				description: newDescription,
+			}
+		);
+	}
+
+	const deleteList = async (el, listId, listName) => {
+		el.preventDefault();
 		// Let user knnow action can't be undone
 		const confirmDelete = window.confirm(`This will delete the list '${listName}' and all tasks in it. This action can not be undone.`);
 
@@ -138,14 +167,26 @@ export default () => {
 					return (
 						<article key={`task-list-${id}`} className="user-list">
 							<div className="user-list-top-section">
-								<h1>{title}</h1>
-								<div className="user-list-actions text-small">
-									<span className="text-muted">{title} options</span>
-									<a href="#" onClick={(e) => editList(e, id, title)}>Edit</a>
-									<a href="#" onClick={(e) => deleteList(e, id, title)}>Delete</a>
+								<h1
+									ref={titleRef}
+									onClick={() => editList(titleRef)}
+								>
+									{listTitle}
+								</h1>
+								<div className="user-list-actions">
+									<button onClick={(el) => deleteList(el, id, title)}>Delete {listTitle}</button>
 								</div>
 							</div>
-							<p className="user-list-description mb-2">{description}</p>
+							<p
+								ref={descriptionRef}
+								className="user-list-description mb-2"
+								onClick={() => editList(descriptionRef)}
+							>
+								{description}
+							</p>
+							{saveButton &&
+								<button onClick={() => saveList(id, titleRef, descriptionRef)}>save</button>
+							}
 							{tasks}
 						</article>
 					);
