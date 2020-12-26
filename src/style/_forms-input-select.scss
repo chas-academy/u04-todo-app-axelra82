@@ -1,0 +1,65 @@
+label {
+	padding: 0.635rem 0;
+	font-weight: 700;
+	display: block;
+}
+
+input,
+textarea,
+select {
+	border: 1px solid lighten($black, 80);
+	border-radius: 0.15rem;
+	font-size: 1rem;
+	padding: 0.465rem 0.875rem;
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	appearance: none;
+	transition: all 0.35s;
+
+	&[aria-invalid="true"] {
+		border: 1px solid $danger !important;
+		border-left-color: rgba($danger, 0.8) !important;
+		border-left-width: 0.75rem !important;
+		background-color: rgba($danger, 0.1) !important;
+		animation: errorShake 0.75s both;
+		transform: translateX(0);
+		will-change: transform;
+
+		@keyframes errorShake {
+			10%,
+			90% {
+				transform: translateX(-5px);
+			}
+
+			20%,
+			80% {
+				transform: translateX(2px);
+			}
+
+			30%,
+			50%,
+			70% {
+				transform: translateX(-2px);
+			}
+
+			40%,
+			60% {
+				transform: translateX(5px);
+			}
+		}
+	}
+}
+
+select {
+	position: relative;
+	background: $white
+		url('data:image/svg+xml;utf8,<svg aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="#{sansHashColor(lighten($black, 80))}" d="M207.029 381.476L12.686 187.132c-9.373-9.373-9.373-24.569 0-33.941l22.667-22.667c9.357-9.357 24.522-9.375 33.901-.04L224 284.505l154.745-154.021c9.379-9.335 24.544-9.317 33.901.04l22.667 22.667c9.373 9.373 9.373 24.569 0 33.941L240.971 381.476c-9.373 9.372-24.569 9.372-33.942 0z"></path></svg>')
+		no-repeat;
+	background-position: right 0.7em top 50%, 0 0;
+	background-size: 0.65em auto, 100%;
+	padding: 0.465rem 1.875rem 0.465rem 0.875rem;
+
+	&:invalid {
+		color: lighten($black, 70) !important;
+	}
+}

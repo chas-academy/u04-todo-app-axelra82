@@ -1,0 +1,36 @@
+@import "../../../style/media";
+@import "../../../style/global";
+@import "../../../style/colors";
+@import "../../../style/typography";
+
+#user-list-main-title {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+
+	a {
+		text-align: right;
+	}
+}
+.user-list {
+	margin-top: 2rem;
+	padding-top: 2rem;
+	border-top: 3px solid $cc;
+
+	.user-list-top-section {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		column-gap: 1rem;
+
+		.user-list-actions {
+			text-align: right;
+			a {
+				margin-left: 1rem;
+			}
+		}
+	}
+	.user-list-description {
+		// background: $smoke;
+		// border-radius: 0.15rem;
+		// padding: 1rem;
+	}
+}

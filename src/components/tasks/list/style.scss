@@ -1,0 +1,97 @@
+@import "../../../style/media";
+@import "../../../style/global";
+@import "../../../style/colors";
+@import "../../../style/typography";
+
+#list-actions {
+	ul {
+		list-style: none;
+		display: flex;
+		justify-content: space-between;
+
+		li {
+			&.card-action {
+				position: relative;
+
+				button {
+					&.add-card,
+					&.delete-card {
+						color: $white;
+					}
+
+					&.add-card {
+						background: $success;
+						border-color: transparent;
+						&:hover {
+							background: lighten($success, 5);
+						}
+					}
+
+					&.update-card {
+						background: $warning;
+						color: $black;
+						&:hover {
+							background: lighten($warning, 10);
+						}
+					}
+
+					&.delete-card {
+						background: $danger;
+						&:hover {
+							background: lighten($danger, 5);
+						}
+					}
+
+					&:disabled {
+						background: $ce;
+						color: $nine;
+						cursor: default;
+
+						&:hover {
+							background: $ce;
+							color: $nine;
+						}
+					}
+				}
+			}
+
+			.svg-icon {
+				width: 1rem;
+				margin-left: 0.375rem;
+			}
+		}
+	}
+}
+
+#tasks {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 4rem;
+	grid-template-areas: "todo done";
+
+	#tasks-todo {
+		grid-area: todo;
+		.task-card {
+			// background: linear-gradient(to right, #34e89e, #0f3443);
+			background: $primary;
+		}
+	}
+
+	#tasks-done {
+		grid-area: done;
+
+		#empty-done {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-wrap: nowrap;
+			flex-direction: column;
+			height: 80%;
+		}
+		.task-card {
+			// background: linear-gradient(to right, #29323c, #485563);
+			background: $smoke;
+			color: $six;
+		}
+	}
+}

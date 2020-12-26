@@ -1,0 +1,85 @@
+// General
+$one: #111111;
+$two: #222222;
+$three: #333333;
+$four: #444444;
+$five: #555555;
+$six: #666666;
+$seven: #777777;
+$eight: #888888;
+$nine: #999999;
+
+$ca: #aaaaaa;
+$cb: #bbbbbb;
+$cc: #cccccc;
+$cd: #dddddd;
+$ce: #eeeeee;
+
+$black: #000000;
+$white: #ffffff;
+$smoke: #f5f5f5;
+
+// Indicators
+$info: #007bff;
+$success: #28a745;
+$warning: #ffc107;
+$danger: #dc3545;
+
+$primary: #ffff99;
+
+// Classes
+.text-black {
+	color: $black !important;
+
+	a {
+		color: $black !important;
+	}
+}
+
+.text-white {
+	color: $white !important;
+
+	a {
+		color: $white !important;
+	}
+}
+
+.text-gray {
+	color: lighten($black, 50) !important;
+
+	a {
+		color: lighten($black, 50) !important;
+	}
+}
+
+.text-danger {
+	color: $danger !important;
+
+	a {
+		color: $danger !important;
+	}
+}
+
+.background-black {
+	background: $black !important;
+}
+
+.background-white {
+	background: $white !important;
+}
+
+.background-smoke {
+	background: $smoke !important;
+}
+
+// Replace hash (#) function for hex color
+@function sansHashColor($string) {
+	@if type-of($string) == "color" and str-index(#{$string}, "#") == 1 {
+		$hex: str-slice(ie-hex-str($string), 4);
+		$string: unquote("#{$hex}");
+
+		@return "%23" + $string;
+	}
+
+	@return $string;
+}

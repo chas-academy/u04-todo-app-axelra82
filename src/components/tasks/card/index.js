@@ -1,5 +1,6 @@
 /* eslint-disable import/no-anonymous-default-export */
 import React, { useRef } from 'react';
+import './style.scss';
 
 export default ({
 	props: {

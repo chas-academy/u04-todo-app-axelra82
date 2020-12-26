@@ -7,6 +7,7 @@ import Context from '../../../context';
 import api from '../../../api';
 import { TaskList } from '../../../components/tasks';
 import CreateForm from '../../../components/create-form';
+import './style.scss';
 
 export default () => {
 	const [context] = useContext(Context);

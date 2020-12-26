@@ -1,6 +1,7 @@
 /* eslint-disable import/no-anonymous-default-export */
 import React, { useState } from 'react';
 import api from '../../api';
+import './style.scss';
 
 export default ({
 	props: {

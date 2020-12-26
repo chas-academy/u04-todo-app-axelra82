@@ -1,0 +1,46 @@
+@import "../../style/media";
+@import "../../style/global";
+@import "../../style/colors";
+@import "../../style/animations";
+@import "../../style/forms-input-select";
+@import "../tasks/card/style.scss";
+// @import "../../header/style.scss";
+
+form#create-task-form {
+	@include animationTopSlideIn;
+
+	@extend .task-card;
+	background: $smoke;
+	border: 3px solid darken($smoke, 5);
+
+	label {
+		color: $black;
+	}
+
+	input,
+	textarea {
+		border: none;
+	}
+
+	button {
+		background: none;
+		border: none;
+		cursor: pointer;
+
+		display: flex;
+		width: 100%;
+		justify-content: center;
+		.svg-icon {
+			@include transition;
+			color: $success;
+			width: 2rem;
+			text-align: center;
+			margin: 0.5rem 0 0 0;
+		}
+		&:hover {
+			.svg-icon {
+				transform: scale(1.015);
+			}
+		}
+	}
+}

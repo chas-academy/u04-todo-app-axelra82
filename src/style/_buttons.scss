@@ -1,0 +1,23 @@
+button {
+	border-radius: 0.15rem;
+	padding: 0.475rem 0.675rem;
+	font-size: 1rem;
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+	@include transition;
+	// border: 1px solid $cc;
+	border: none;
+	background: $smoke;
+
+	&[type="submit"] {
+		border-color: transparent;
+		margin-top: 1rem;
+		color: $white;
+		background: $success;
+
+		&:hover {
+			background: lighten($success, 5);
+		}
+	}
+}

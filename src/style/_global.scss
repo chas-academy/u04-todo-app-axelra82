@@ -1,0 +1,4 @@
+// It's nice to have standars
+@mixin transition($time: 350ms, $what: all) {
+	transition: $what $time;
+}

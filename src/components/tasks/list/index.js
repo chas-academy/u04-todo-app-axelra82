@@ -5,6 +5,7 @@ import { TaskCard, } from '../';
 import ListActions from '../actions';
 import CreateForm from '../../create-form';
 import api from '../../../api';
+import './style.scss';
 
 export default ({
 	props: {

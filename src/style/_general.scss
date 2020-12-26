@@ -1,0 +1,27 @@
+html,
+body {
+	position: relative;
+	min-height: 100vh;
+}
+
+.container {
+	position: relative;
+	padding: 2rem 1rem;
+	margin: 0 auto;
+}
+
+.hide {
+	display: none;
+}
+
+@include media-lg {
+	.container {
+		width: 920px;
+	}
+}
+
+@include media-xl {
+	.container {
+		width: 1140px;
+	}
+}
