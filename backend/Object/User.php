@@ -80,6 +80,7 @@ class User{
 					array(
 						"token"		=> $jwt,
 						"username"	=> $this->username,
+						"userId"	=> $this->user["id"],
 					)
 				);
 			}else{

@@ -26,7 +26,6 @@ if($connection){
 	$crud->title			= $data->title;
 	$crud->description		= $data->description;
 	$crud->id 				= empty($data->id) ? null : $data->id;
-	$crud->idObject			= empty($data->idObject) ? null : $data->idObject;
 	
 	// Create
 	$stmt 						= $crud->create();
@@ -34,7 +33,7 @@ if($connection){
 		
 		echo $helpers->returnObject(
 			true,
-			"Added $crud->title ($crud->description) to $crud->table",
+			"Added $crud->title ($crud->description) in $crud->table",
 		);
 
 	}else{

@@ -24,10 +24,12 @@ export default () => {
 		if (response.success) {
 			// Persist signup/login
 			localStorage.setItem(context.appUser, JSON.stringify(response.data.token));
+			const { username, userId } = response.data;
 			setContext({
 				...context,
 				user: true,
-				username: response.data.username,
+				username,
+				userId,
 			});
 			// Change route to user page
 			history.push("/user");

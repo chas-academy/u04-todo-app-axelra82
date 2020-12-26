@@ -26,57 +26,85 @@ if($connection){
 		// Set object variables
 		$crud->connection 	= $connection;
 		$crud->table 		= $data->table;
-		$crud->listId		= empty($data->listId) ? null : $data->listId;
-		
+		$crud->ids			= empty($data->ids) ? null : $data->ids;
+
 		// Begin extraction
 		$stmt 				= $crud->read();
 		$rowCount			= $stmt->rowCount();
-
+		
 		// Test row count
 		if($rowCount > 0){
-			$tasksArr	= [];
-			$todoArr 	= [];
-			$doneArr 	= [];
-		
-			// While loop for table row(s)
-			while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
-				// Extract row will define $row['name'] as $name
-				extract($row);
-				
-				$task = array(
-					'id'			=> $id,
-					'title'			=> $title,
-					'description'	=> html_entity_decode($description),
-					'done'  		=> (int) $done,
-					'createdAt'		=> $createdAt,
-					'updatedAt'		=> $updatedAt,
-					'listId'		=> $listId,
-				);
-				
-				// Switch case for array push based on status
-				switch ($task['done']) {
-					case 0:
-						array_push($todoArr, $task);
-						break;
-					case 1:
-						array_push($doneArr, $task);
-						break;
+
+			if($crud->table === 'tasks'){
+				$tasksArr	= [];
+				$todoArr 	= [];
+				$doneArr 	= [];
+			
+				// While loop for table row(s)
+				while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+					// Extract row will define $row['name'] as $name
+					extract($row);
+					
+					$task = array(
+						'id'			=> $id,
+						'title'			=> $title,
+						'description'	=> html_entity_decode($description),
+						'done'  		=> (int) $done,
+						'createdAt'		=> $createdAt,
+						'updatedAt'		=> $updatedAt,
+						'listId'		=> $listId,
+					);
+					
+					// Switch case for array push based on status
+					switch ($task['done']) {
+						case 0:
+							array_push($todoArr, $task);
+							break;
+						case 1:
+							array_push($doneArr, $task);
+							break;
+					}
 				}
+
+				// Add todo and done arrays to tasks array
+				$tasksArr['todo']		= $todoArr;
+				$tasksArr['done']		= $doneArr;
+
+				echo $helpers->returnObject(
+					true,
+					"$rowCount records found",
+					json_encode($tasksArr),
+				);
 			}
+			
+			if($crud->table === 'lists'){
+				$listsArr	= [];
+			
+				// While loop for table row(s)
+				while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+					// Extract row will define $row['name'] as $name
+					extract($row);
+					
+					$list = array(
+						'id'			=> $id,
+						'title'			=> $title,
+						'description'	=> html_entity_decode($description),
+					);
+					
+					array_push($listsArr, $list);
+				}
 
-			// Add todo and done arrays to tasks array
-			$tasksArr['todo']		= $todoArr;
-			$tasksArr['done']		= $doneArr;
-
-			echo $helpers->returnObject(
-				true,
-				"$rowCount records found",
-				json_encode($tasksArr),
-			);
+				echo $helpers->returnObject(
+					true,
+					"$rowCount records found",
+					json_encode($listsArr),
+				);
+			}
+			
 		}else{
 			echo $helpers->returnObject(
 				true,
-				"No records found",
+				"No records found in {$crud->table}",
 			);
 		}
 	}else{

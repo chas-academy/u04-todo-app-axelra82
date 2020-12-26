@@ -53,8 +53,6 @@ export default async (
 		endpointUrl = `http://${process.env.REACT_APP_HOST}:${process.env.REACT_APP_PORT}/backend/API/Endpoint/${endpointLocation}`
 	}
 
-	console.log(endpointUrl);
-
 	try {
 
 		// Set up API request
@@ -82,7 +80,7 @@ export default async (
 			message: `in call: ${error}`
 		}
 	}
-	console.log(response);
+
 	// Return response object
 	return response;
 }
