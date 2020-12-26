@@ -26,7 +26,7 @@ export default ({
 
 				<li className="card-action">
 					<button
-						onClick={updateTask}
+						onClick={() => updateTask(true)}
 						className="update-card"
 						disabled={isDisabled}
 					>

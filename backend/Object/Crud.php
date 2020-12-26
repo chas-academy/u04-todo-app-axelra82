@@ -1,6 +1,7 @@
 <?php
 namespace NS\Object;
 // Keep NS for core PHP classes
+use PDO;
 use PDOException;
 
 include_once( dirname(__DIR__ , 1) .'/Utils/Autoloader.php');
@@ -111,16 +112,29 @@ class Crud {
     public function update(){
 		
 		try{
-			$this->query          = "UPDATE 
-				`{$this->table}`
-			SET
-				`title`           = :title,
-				`description`     = :description,
-				`done`            = :done,
-				`updatedAt`       = NOW()
-			WHERE
-				`id`              = :id
-			";
+			$hasDone				= !empty($this->done) || $this->done === 0;
+			if($hasDone){
+				$this->query		= "UPDATE 
+					`{$this->table}`
+				SET
+					`title`			= :title,
+					`description`	= :description,
+					`done`			= :done,
+					`updatedAt`		= NOW()
+				WHERE
+					`id`			= :id
+				";
+			}else{
+				$this->query		= "UPDATE 
+					`{$this->table}`
+				SET
+					`title`			= :title,
+					`description`	= :description,
+					`updatedAt`		= NOW()
+				WHERE
+					`id`			= :id
+				";
+			}
 
 			// Prepare query statement
 			$stmt               = $this->connection->prepare($this->query);
@@ -132,8 +146,10 @@ class Crud {
 			// Bind values
 			$stmt->bindValue(":title", $this->title);
 			$stmt->bindValue(":description", $this->description);
-			$stmt->bindValue(":done", $this->done);
 			$stmt->bindValue(":id", $this->id);
+			if($hasDone){
+				$stmt->bindValue(":done", $this->done, PDO::PARAM_BOOL);
+			}
         
         	// Execute query statement
         	$stmt->execute();

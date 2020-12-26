@@ -1,10 +1,13 @@
 /* eslint-disable import/no-anonymous-default-export */
-import React from 'react';
+import React, { useRef } from 'react';
 
 export default ({
 	props: {
 		task,
-		selectCard
+		selectCard,
+		updateTask,
+		saveTask,
+		saveButton,
 	},
 }) => {
 
@@ -16,6 +19,8 @@ export default ({
 		updatedAt,
 	} = task;
 
+	const titleRef = useRef();
+	const descriptionRef = useRef();
 	// Date format function
 	const formatDate = (date) => {
 
@@ -44,7 +49,11 @@ export default ({
 				onChange={(e) => selectCard(e.target)}
 			/>
 
-			<h1 className="title">
+			<h1
+				ref={titleRef}
+				className="title"
+				onClick={() => updateTask(false, titleRef)}
+			>
 				{title}
 			</h1>
 			<p className="task-created">
@@ -58,9 +67,16 @@ export default ({
 					</>
 				}
 			</p>
-			<p className="description">
+			<p
+				ref={descriptionRef}
+				className="description"
+				onClick={() => updateTask(false, descriptionRef)}
+			>
 				{description}
 			</p>
+			{saveButton &&
+				<button onClick={() => saveTask(id, titleRef, descriptionRef)}>save</button>
+			}
 		</article>
 	);
 }

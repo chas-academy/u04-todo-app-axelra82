@@ -32,20 +32,20 @@ if($connection){
 		$crud->id				= $data->id;
 		$crud->title			= $data->title;
 		$crud->description		= $data->description;
-		$crud->done				= $data->done;
+		$crud->done				= (int) $data->done;
 
 		// Update
 		$stmt 					= $crud->update();
 		if($stmt){
 			echo $helpers->returnObject(
 				true,
-				"Updated $crud->id from $crud->table",
+				"Updated $crud->title (id: $crud->id) in $crud->table",
 			);
 		}else{
 		
 			echo $helpers->returnObject(
 				false,
-				"Could not update $crud->id from $crud->table",
+				"Could not update $data->title (id: $crud->id) in $crud->table",
 			);
 		}
 	}else{

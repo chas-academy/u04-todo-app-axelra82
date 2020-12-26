@@ -20,7 +20,7 @@ export default () => {
 				password
 			}
 		);
-		console.log(response);
+
 		if (response.success) {
 			// Persist signup/login
 			localStorage.setItem(context.appUser, JSON.stringify(response.data.token));

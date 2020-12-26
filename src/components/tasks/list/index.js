@@ -1,3 +1,4 @@
+/* eslint-disable default-case */
 /* eslint-disable import/no-anonymous-default-export */
 import React, { useEffect, useState, useRef } from 'react';
 import { TaskCard, } from '../';
@@ -18,6 +19,7 @@ export default ({
 	const [createForm, setCreateForm] = useState(false);
 	const [isSelected, setIsSelected] = useState([]);
 	const [isDisabled, setIsDisabled] = useState(true);
+	const [saveButton, setSaveButton] = useState(false);
 	const taskLists = useRef(null);
 	const table = 'tasks';
 
@@ -60,42 +62,66 @@ export default ({
 		setCreateForm(true);
 	}
 
-	const updateTask = async () => {
+	const updateTask = async (changeState = false, ref = null) => {
 
-		// Map selected array with promise array returned
-		const selected = isSelected.map(async (object) => {
-			let listObject;
-			switch (object.list) {
-				case 'todo':
-					listObject = toDoList.find(listObject => listObject.id === object.id);
-					break;
-				case 'done':
-					listObject = doneList.find(listObject => listObject.id === object.id);
-					break;
-
-				default:
-					listObject = false;
-					break;
-			}
-
-			// Toggle done state
-			listObject.done = listObject.done === 0 ? 1 : 0;
-
-			// Return promise array
-			return await api(
-				'update',
-				{
-					...listObject,
-					table
+		if (changeState) {
+			// Map selected array with promise array returned
+			const selected = isSelected.map(async (object) => {
+				let listObject;
+				switch (object.list) {
+					case 'todo':
+						listObject = toDoList.find(listObject => listObject.id === object.id);
+						break;
+					case 'done':
+						listObject = doneList.find(listObject => listObject.id === object.id);
+						break;
 				}
-			);
-		});
 
-		// Wait for all objects to finish
-		await Promise.all(selected);
+				// Toggle done state
+				listObject.done = listObject.done === 0 ? 1 : 0;
 
-		// Run finalize action function
-		finalizeAction();
+				// Return promise array
+				return await api(
+					'update',
+					{
+						table,
+						...listObject,
+					}
+				);
+			});
+
+			// Wait for all objects to finish
+			await Promise.all(selected);
+
+			// Run finalize action function
+			finalizeAction();
+
+		} else {
+			setSaveButton(true);
+			ref.current.contentEditable = true;
+		}
+	}
+
+	const saveTask = async (taskId, title, description) => {
+		const currTitle = title.current;
+		const currDescription = description.current;
+
+		const newTitle = currTitle.innerHTML;
+		const newDescription = currDescription.innerHTML;
+
+		currTitle.contentEditable = false;
+		currDescription.contentEditable = false;
+		setSaveButton(false);
+
+		const reponse = await api(
+			'update',
+			{
+				table,
+				id: taskId,
+				title: newTitle,
+				description: newDescription,
+			}
+		);
 	}
 
 	const deleteTask = () => {
@@ -213,6 +239,9 @@ export default ({
 										props={{
 											task,
 											selectCard,
+											updateTask,
+											saveTask,
+											saveButton,
 										}}
 									/>
 								);
@@ -236,7 +265,10 @@ export default ({
 									key={`task-done-${task.id}-${i}`}
 									props={{
 										task,
-										selectCard
+										selectCard,
+										updateTask,
+										saveTask,
+										saveButton,
 									}}
 								/>
 							);

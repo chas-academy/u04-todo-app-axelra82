@@ -57,7 +57,7 @@ export default () => {
 					ids: userId,
 				}
 			);
-			console.log(response);
+
 			setLists(response.data);
 		}
 		return;
@@ -85,8 +85,6 @@ export default () => {
 					ids: listId
 				}
 			);
-
-			console.log(response);
 
 			if (response.success) {
 				getLists();
