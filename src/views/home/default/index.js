@@ -26,3 +26,31 @@ export default () => {
 		</div>
 	);
 }
+
+
+
+
+
+
+
+
+
+
+// import { Link } from 'react-router-dom';
+// import { useHistory } from 'react-router-dom';
+// import { UserSignup, UserLogin } from '../../../components/user';
+// import Context from '../../../context';
+// const [context, setContext] = useContext(Context);
+// const history = useHistory();
+// const logout = () => {
+// 	setContext({
+// 		...context,
+// 		user: false,
+// 	});
+// 	localStorage.removeItem(context.appUser);
+// 	history.push("/");
+// }
+// <UserSignup />
+// <UserLogin />
+// <button onClick={logout}>Log out</button>
+// <Link to="/user">User</Link>

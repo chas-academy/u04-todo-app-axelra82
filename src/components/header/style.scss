@@ -1,0 +1,49 @@
+@import "../../style/global";
+@import "../../style/colors";
+
+header {
+	// https://uigradients.com/#CanYouFeelTheLoveTonight
+	background: linear-gradient(to right, #b06ab3, #4568dc);
+
+	.container {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		column-gap: 2rem;
+		grid-template-areas:
+			"dodo hint"
+			"createBtn createBtn";
+
+		img {
+			grid-area: dodo;
+			width: 100%;
+		}
+
+		#hint {
+			grid-area: hint;
+			color: $white;
+			text-align: right;
+			a {
+				color: $white;
+			}
+		}
+		.create-task {
+			grid-area: createBtn;
+			display: flex;
+			justify-content: center;
+			width: 100%;
+
+			.svg-icon {
+				@include transition;
+				color: rgba($white, 0.45);
+				width: 2rem;
+				text-align: center;
+			}
+			&:hover {
+				.svg-icon {
+					transform: scale(1.3);
+					color: $white;
+				}
+			}
+		}
+	}
+}

@@ -2,7 +2,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable import/no-anonymous-default-export */
 import React, { useContext, useEffect, useState, useRef } from 'react';
-import { Link } from 'react-router-dom';
 import Context from '../../../context';
 import api from '../../../api';
 import { TaskList } from '../../../components/tasks';
@@ -135,9 +134,8 @@ export default () => {
 
 	return (
 		<>
-			<Link to="/">Home</Link>
 			<div className="container">
-				<div id="user-list-main-title">
+				<>
 					<h1>Welcome {context.username}</h1>
 					{lists.length ?
 						<a className="text-small" href="#" onClick={createList}>Create another list</a>
@@ -152,7 +150,7 @@ export default () => {
 							}} />
 						</>
 					}
-				</div>
+				</>
 
 				{createForm &&
 					<CreateForm props={{
@@ -175,7 +173,20 @@ export default () => {
 									{listTitle}
 								</h1>
 								<div className="user-list-actions">
-									<button onClick={(el) => deleteList(el, id, title)}>Delete {listTitle}</button>
+									{saveButton &&
+										<button
+											className="save-list"
+											onClick={() => saveList(id, titleRef, descriptionRef)}
+										>
+											save
+										</button>
+									}
+									<button
+										className="delete-list"
+										onClick={(el) => deleteList(el, id, title)}
+									>
+										Delete {listTitle}
+									</button>
 								</div>
 							</div>
 							<p
@@ -185,9 +196,7 @@ export default () => {
 							>
 								{description}
 							</p>
-							{saveButton &&
-								<button onClick={() => saveList(id, titleRef, descriptionRef)}>save</button>
-							}
+
 							{tasks}
 						</article>
 					);

@@ -5,7 +5,12 @@ import Context from '../../../context';
 import api from '../../../api';
 import { parseJwt } from '../../../helpers';
 
-export default () => {
+export default ({
+	props: {
+		closeModal,
+		setLoginState
+	}
+}) => {
 	const [context, setContext] = useContext(Context);
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
@@ -34,6 +39,8 @@ export default () => {
 					username,
 					userId,
 				});
+				closeModal(e);
+				setLoginState(false);
 				// Change route to user page
 				history.push("/user");
 			} else {

@@ -1,6 +1,7 @@
 /* eslint-disable import/no-anonymous-default-export */
 import React, { useState } from 'react';
 import api from '../../api';
+import { IconAdd } from '../icons';
 import './style.scss';
 
 export default ({
@@ -128,7 +129,7 @@ export default ({
 				onClick={createTask}
 				type="submit"
 			>
-				Add
+				<IconAdd />
 			</button>
 		</form>
 	);

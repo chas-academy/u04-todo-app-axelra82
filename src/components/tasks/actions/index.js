@@ -1,5 +1,6 @@
 /* eslint-disable import/no-anonymous-default-export */
 import React from 'react';
+import { IconAdd, IconComplete, IconDelete } from '../../icons';
 
 export default ({
 	props: {
@@ -20,7 +21,7 @@ export default ({
 						onClick={createNew}
 						className="add-card"
 					>
-						New
+						New <IconAdd />
 					</button>
 				</li>
 
@@ -30,7 +31,7 @@ export default ({
 						className="update-card"
 						disabled={isDisabled}
 					>
-						Done
+						Done <IconComplete />
 					</button>
 				</li>
 
@@ -40,7 +41,7 @@ export default ({
 						className="delete-card"
 						disabled={isDisabled}
 					>
-						Delete
+						Delete <IconDelete />
 					</button>
 				</li>
 

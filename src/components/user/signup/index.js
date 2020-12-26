@@ -4,7 +4,12 @@ import { useHistory } from 'react-router-dom';
 import Context from '../../../context';
 import api from '../../../api';
 
-export default () => {
+export default ({
+	props: {
+		closeModal,
+		setSignupState
+	}
+}) => {
 	const [context, setContext] = useContext(Context);
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
@@ -31,6 +36,8 @@ export default () => {
 				username,
 				userId,
 			});
+			closeModal(e);
+			setSignupState(false);
 			// Change route to user page
 			history.push("/user");
 		} else {

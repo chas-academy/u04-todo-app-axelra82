@@ -1,6 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useEffect, useState } from 'react';
 import Context from '../../context';
-import { Login, Signup } from '../user';
+import { UserLogin, UserSignup } from '../user';
 import './style.scss';
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -41,14 +42,18 @@ export default () => {
 			<div id="overlay-box" className={closing ? 'closing' : ''}>
 				<section className="form-box">
 					{context.modal.signup &&
-						<Signup props={{ closeModal, setSignupState }} />
+						<UserSignup props={{ closeModal, setSignupState }} />
 					}
 					{context.modal.login &&
-						<Login props={{ closeModal, setLoginState }} />
+						<UserLogin props={{ closeModal, setLoginState }} />
 					}
 				</section>
 			</div>
-			<div id="overlay" className={closing ? 'closing' : ''} onClick={closeModal}></div>
+			<div
+				id="overlay"
+				className={closing ? 'closing' : ''}
+				onClick={closeModal}
+			></div>
 		</>
 	);
 };

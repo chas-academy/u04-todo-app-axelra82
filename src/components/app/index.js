@@ -6,6 +6,9 @@ import { withRouter } from "react-router-dom";
 import Routes from '../../routes';
 import axios from 'axios';
 import { parseJwt } from '../../helpers';
+import Header from '../../components/header';
+import Footer from '../../components/footer';
+import Modal from '../../components/modal';
 
 export default withRouter(() => {
 	const [context, setContext] = useState({
@@ -13,6 +16,11 @@ export default withRouter(() => {
 		user: false,
 		userId: null,
 		username: null,
+		modal: {
+			login: false,
+			signup: false,
+			open: false,
+		}
 	});
 
 	// Run once initially using empty array
@@ -54,9 +62,15 @@ export default withRouter(() => {
 
 	return (
 		<Context.Provider value={[context, setContext]}>
+			{
+				context.modal.open &&
+				<Modal />
+			}
+			<Header />
 			<main id="main-container">
 				<Routes />
 			</main>
+			<Footer />
 		</Context.Provider>
 	);
 });

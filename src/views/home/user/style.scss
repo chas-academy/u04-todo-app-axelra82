@@ -3,14 +3,6 @@
 @import "../../../style/colors";
 @import "../../../style/typography";
 
-#user-list-main-title {
-	display: grid;
-	grid-template-columns: repeat(2, 1fr);
-
-	a {
-		text-align: right;
-	}
-}
 .user-list {
 	margin-top: 2rem;
 	padding-top: 2rem;
@@ -23,14 +15,21 @@
 
 		.user-list-actions {
 			text-align: right;
-			a {
+			button {
 				margin-left: 1rem;
+
+				&.save-list,
+				&.delete-list {
+					color: $white;
+				}
+				&.save-list {
+					background: $success;
+				}
+
+				&.delete-list {
+					background: $danger;
+				}
 			}
 		}
-	}
-	.user-list-description {
-		// background: $smoke;
-		// border-radius: 0.15rem;
-		// padding: 1rem;
 	}
 }
