@@ -1,7 +1,8 @@
 /* eslint-disable import/no-anonymous-default-export */
 import React, { useContext } from "react";
 import { Switch, Route } from "react-router-dom";
-import { Configure, DefaultHome, DefaultUser, NotFound } from "./views";
+import { NotFound, Configure, DefaultHome, DefaultUser } from "./views";
+
 import Context from './context';
 
 export default () => {
