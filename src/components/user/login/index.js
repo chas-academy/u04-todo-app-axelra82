@@ -1,9 +1,10 @@
+/* eslint-disable import/no-anonymous-default-export */
 import React, { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import Context from '../../../context';
 import api from '../../../api';
+import { parseJwt } from '../../../helpers';
 
-// eslint-disable-next-line import/no-anonymous-default-export
 export default () => {
 	const [context, setContext] = useContext(Context);
 	const [username, setUsername] = useState('');
@@ -25,10 +26,13 @@ export default () => {
 			if (response.success) {
 				// Persist signup/login
 				localStorage.setItem(context.appUser, JSON.stringify(response.data));
+				const jwt = localStorage.getItem(context.appUser);
+				const { userId } = parseJwt(jwt);
 				setContext({
 					...context,
 					user: true,
 					username,
+					userId,
 				});
 				// Change route to user page
 				history.push("/user");

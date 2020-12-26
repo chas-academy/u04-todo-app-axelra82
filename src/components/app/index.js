@@ -5,6 +5,7 @@ import Context from '../../context';
 import { withRouter } from "react-router-dom";
 import Routes from '../../routes';
 import axios from 'axios';
+import { parseJwt } from '../../helpers';
 
 export default withRouter(() => {
 	const [context, setContext] = useState({
@@ -28,26 +29,7 @@ export default withRouter(() => {
 				userId = null,
 				username = null;
 			if (jwt) {
-				// This would be a good place to think about validating
-				// the token but since this task is about backend for
-				// todo I feel like the current setup is more than enough
-				// ...
-				// Deconstruct token payload
-				const parseJwt = (token) => {
-					// Get payload from token
-					const base64 = token.split('.')[1];
-					// Clean up
-					const clean = base64.replace(/-/g, '+').replace(/_/g, '/');
-					// Extract content
-					const payload = decodeURIComponent(atob(clean).split('').map(function (c) {
-						return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-					}).join(''));
-					// Return object
-					return JSON.parse(payload);
-				};
-				const getPayload = parseJwt(jwt);
-				const { exp: expires, userId: id, username: name } = getPayload;
-
+				const { exp: expires, userId: id, username: name } = parseJwt(jwt);
 				// If timestamp hasn't expired
 				if (expires > timestamp) {
 					// Valid session active
