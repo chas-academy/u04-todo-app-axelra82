@@ -14,10 +14,7 @@ export default () => {
 	const [taskList, setTaskList] = useState([]);
 	const [createForm, setCreateForm] = useState(false);
 	const userId = context.userId;
-	useEffect(() => {
-		console.log(context);
-		console.log(userId);
-	}, [])
+
 	const getTasks = async () => {
 
 		if (lists.length) {
@@ -44,6 +41,9 @@ export default () => {
 			const allListTasks = await Promise.all(getListTasks);
 
 			setTaskList(allListTasks);
+		} else {
+			// No list(s) reset taskList
+			setTaskList([]);
 		}
 		return;
 	}
@@ -57,6 +57,7 @@ export default () => {
 					ids: userId,
 				}
 			);
+			console.log(response);
 			setLists(response.data);
 		}
 		return;
@@ -66,14 +67,43 @@ export default () => {
 		e.preventDefault();
 		setCreateForm(true);
 	}
+	const editList = (e, listId, listName) => {
+		e.preventDefault();
+		alert(`edit list ${listName} (id: ${listId})`);
+	}
+
+	const deleteList = async (e, listId, listName) => {
+		e.preventDefault();
+		// Let user knnow action can't be undone
+		const confirmDelete = window.confirm(`This will delete the list '${listName}' and all tasks in it. This action can not be undone.`);
+
+		if (confirmDelete) {
+			const response = await api(
+				'delete',
+				{
+					table: 'lists',
+					ids: listId
+				}
+			);
+
+			console.log(response);
+
+			if (response.success) {
+				getLists();
+			} else {
+				alert(response.message);
+			}
+		}
+
+	}
 
 	useEffect(() => {
 		lists && getTasks(lists);
 	}, [lists]);
 
 	useEffect(() => {
-		getLists();
-	}, []);
+		userId && getLists();
+	}, [userId]);
 
 	return (
 		<>
@@ -113,8 +143,8 @@ export default () => {
 								<h1>{title}</h1>
 								<div className="user-list-actions text-small">
 									<span className="text-muted">{title} options</span>
-									{/* <a href="#" onClick={(e) => editList(e, id)}>Edit</a> */}
-									{/* <a href="#" onClick={(e) => deleteList(e, id, title)}>Delete</a> */}
+									<a href="#" onClick={(e) => editList(e, id, title)}>Edit</a>
+									<a href="#" onClick={(e) => deleteList(e, id, title)}>Delete</a>
 								</div>
 							</div>
 							<p className="user-list-description mb-2">{description}</p>
