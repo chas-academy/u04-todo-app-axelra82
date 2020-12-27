@@ -1,4 +1,15 @@
 @import "../../style/media";
+@import "../../style/colors";
+
+#howto {
+	border-top: 1px solid $cc;
+	ul {
+		li {
+			padding-left: 1rem;
+			margin-bottom: 1rem;
+		}
+	}
+}
 
 footer {
 	.container {

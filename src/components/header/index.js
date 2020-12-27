@@ -49,73 +49,74 @@ export default () => {
 	}
 
 	return (
+		<>
+			<header id="main-header">
 
-		<header id="main-header">
+				<div className="container">
+					<Router>
+						<Link to="/" onClick={goHome}>
+							<img src={Dodo} alt="To Do DoDo" />
+						</Link>
+					</Router>
 
-			<div className="container">
-				<Router>
-					<Link to="/" onClick={goHome}>
-						<img src={Dodo} alt="To Do DoDo" />
-					</Link>
-				</Router>
-
-				<article id="hint">
-					<h1 className="text-regular m-0">
-						Get <strong>CRUD<sup>*</sup></strong>ing
+					<article id="hint">
+						<h1 className="text-regular m-0">
+							Get <strong>CRUD<sup>*</sup></strong>ing
 					</h1>
-					<p className="text-tiny">
-						<sup>*</sup>Create, Read, Update, Delete
+						<p className="text-tiny">
+							<sup>*</sup>Create, Read, Update, Delete
 					</p>
 
-					{
-						context.user ?
-							<ul>
-								<Router>
-									<li>
-										<Link to="/" onClick={goHome}>
-											Unasigned tasks
-										</Link>
-									</li>
-									<li>
-										<Link to="/user" onClick={goUser}>
-											My lists
-										</Link>
-									</li>
-									<li>
-										<Link to="/" onClick={logout}>
-											Logout
-										</Link>
-									</li>
-								</Router>
-							</ul>
-							:
-							<>
-								<p>
-									<strong>Pssst... Power users <Emoji props={{ label: 'unicorn', emoji: '🦄' }} /></strong>
-								</p>
-
+						{
+							context.user ?
 								<ul>
 									<Router>
-										<li className="text-small">
-											<Link to="/" onClick={signup}>
-												create account
-										</Link> to organize tasks in lists
-									</li>
-
-										<li className="text-small">
-											<Link to="/user" onClick={login}>
-												login
-										</Link> to existing account
-									</li>
+										<li>
+											<Link to="/" onClick={goHome}>
+												Unasigned tasks
+										</Link>
+										</li>
+										<li>
+											<Link to="/user" onClick={goUser}>
+												My lists
+										</Link>
+										</li>
+										<li>
+											<Link to="/" onClick={logout}>
+												Logout
+										</Link>
+										</li>
 									</Router>
 								</ul>
-							</>
-					}
+								:
+								<>
+									<p>
+										<strong>Pssst... Power users <Emoji props={{ label: 'unicorn', emoji: '🦄' }} /></strong>
+									</p>
 
-				</article>
+									<ul>
+										<Router>
+											<li className="text-small">
+												<Link to="/" onClick={signup}>
+													create account
+												</Link> to organize tasks in lists
+											</li>
 
-			</div>
-
-		</header>
+											<li className="text-small">
+												<Link to="/user" onClick={login}>
+													login
+												</Link> to existing account
+											</li>
+										</Router>
+									</ul>
+									<p className="mt-2">
+										<a href="#howto">How to</a>
+									</p>
+								</>
+						}
+					</article>
+				</div>
+			</header>
+		</>
 	);
 }
