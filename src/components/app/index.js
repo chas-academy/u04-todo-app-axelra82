@@ -13,7 +13,7 @@ import Modal from '../../components/modal';
 export default withRouter(() => {
 	const [context, setContext] = useState({
 		configured: false,
-		appUser: process.env.REACT_APP_APPNAME,
+		appUser: 'dodoUser',
 		user: false,
 		userId: null,
 		username: null,
@@ -28,7 +28,7 @@ export default withRouter(() => {
 	useEffect(() => {
 		const initConfigured = async () => {
 			const getConfigured = await axios('/configured.json');
-			const configured = getConfigured.data.configured;
+			const configureData = getConfigured.data;
 			// Look for app user in local storage
 			const jwt = localStorage.getItem(context.appUser);
 			// Get timestamp in seconds
@@ -52,7 +52,7 @@ export default withRouter(() => {
 			}
 			setContext({
 				...context,
-				configured,
+				configured: configureData.configured,
 				user,
 				userId,
 				username,

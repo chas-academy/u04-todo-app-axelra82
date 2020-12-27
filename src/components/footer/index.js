@@ -25,18 +25,19 @@ export default () =>
 
 			<p>
 				<strong>NOTES:</strong>
-				<ul>
-					<li>
-						Deleting a card is permanent and can't be undone. You will <strong>not be prompted</strong> to delete a card.
-					</li>
-					<li>
-						Selecting one or more cards in the "done" list and clicking "done" will bring them back to "to do".
-					</li>
-					<li>
-						The <strong>select-list dropdown</strong> does not toggle selection(s), e.g. if you have selected all cards in "to do" and select "to do" in the drop-down it will not deselect those cards in "to do".
-					</li>
-				</ul>
 			</p>
+			<ul>
+				<li>
+					Deleting a card is permanent and can't be undone. You will <strong>not be prompted</strong> to delete a card.
+					</li>
+				<li>
+					Selecting one or more cards in the "done" list and clicking "done" will bring them back to "to do".
+					</li>
+				<li>
+					The <strong>select-list dropdown</strong> does not toggle selection(s), e.g. if you have selected all cards in "to do" and select "to do" in the drop-down it will not deselect those cards in "to do".
+					</li>
+			</ul>
+
 		</article>
 		<footer id="main-footer" className="background-smoke">
 			<div className="container text-small">

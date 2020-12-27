@@ -50,7 +50,10 @@ export default async (
 
 	// Configured endpoint URL
 	if (endpoint !== 'configure') {
-		endpointUrl = `http://${process.env.REACT_APP_HOST}:${process.env.REACT_APP_PORT}/backend/API/Endpoint/${endpointLocation}`
+		const getConfigured = await axios('/configured.json');
+		const configureData = getConfigured.data;
+		const { host, port } = configureData;
+		endpointUrl = `http://${host}:${port}/backend/API/Endpoint/${endpointLocation}`
 	}
 
 	try {

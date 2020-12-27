@@ -1,20 +1,42 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable default-case */
 /* eslint-disable import/no-anonymous-default-export */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import api from '../../api';
+import axios from 'axios';
 
 export default () => {
 
-	const defaultHost = process.env.REACT_APP_HOST;
-	const defaultPort = process.env.REACT_APP_PORT;
-	const defaultUsername = process.env.REACT_APP_USERNAME;
-	const defaultPassword = process.env.REACT_APP_PASSWORD;
+	const [defaultHost, setDefaultHost] = useState(null);//process.env.REACT_APP_HOST;
+	const [defaultPort, setDefaultPort] = useState(null);//process.env.REACT_APP_PORT;
+	const [defaultUsername, setDefaultUsername] = useState(null);//process.env.REACT_APP_USERNAME;
+	const [defaultPassword, setDefaultPassword] = useState(null);//process.env.REACT_APP_PASSWORD;
 
 	const [host, setHost] = useState(defaultHost);
 	const [port, setPort] = useState(defaultPort);
 	const [username, setUsername] = useState(defaultUsername);
 	const [password, setPassword] = useState(defaultPassword);
+
+	useEffect(() => {
+		const init = async () => {
+			const getConfigured = await axios('/configured.json');
+			const configureData = getConfigured.data;
+			const { host: cHost, port: cPort, username: cUsername, password: cPassword } = configureData;
+
+			setDefaultHost(cHost);
+			setDefaultPort(cPort);
+			setDefaultUsername(cUsername);
+			setDefaultPassword(cPassword);
+		}
+		init();
+	}, []);
+
+	useEffect(() => {
+		setHost(defaultHost);
+		setPort(defaultPort);
+		setUsername(defaultUsername);
+		setPassword(defaultPassword);
+	}, [defaultHost, defaultPort, defaultUsername, defaultPassword]);
 
 	const inputChange = (e) => {
 		const elVal = e.target.value;
@@ -38,6 +60,7 @@ export default () => {
 
 	const initConfigure = async (e) => {
 		e.preventDefault();
+		console.log(host, port, username, password);
 
 		const response = await api(
 			'configure',

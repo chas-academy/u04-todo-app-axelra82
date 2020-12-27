@@ -1,3 +1,9 @@
 {
-    "configured": true
+    "configured": true,
+    "host": "localhost",
+    "port": "8080",
+    "username": "root",
+    "password": "root",
+    "database": "u04todo",
+    "charset": "utf8"
 }
