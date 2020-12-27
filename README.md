@@ -6,13 +6,15 @@ Not to be confused with the dodo (Raphus cucullatus) near Madagascar in the Indi
 
 - PHP
 - MySQL
-- [Nodejs and NPM](https://nodejs.org/en/)
+- [Nodejs and NPM](https://nodejs.org/en/) (You will need this to run React)
 
 ## How to
 
-Clone repo from ["chas-u04-todo" repo](https://github.com/axelra82/chas-u04-todo) to your local `public_html` folder (make sure the public html folder is empty), e.g.
+Clone repo from ["chas-u04-todo"](https://github.com/axelra82/chas-u04-todo) to your servers local `public html` folder, e.g.
 
 ```cd /path/to/public_html```
+
+**NOTE:** make sure the public html folder is empty before proceeding.
 
 Use "." (dot) to define current folder with git clone (_"cloning into an existing directory is only allowed if the directory is empty"_).
 
@@ -20,11 +22,13 @@ Use "." (dot) to define current folder with git clone (_"cloning into an existin
 
 **Install dependencies**
 
-```npm i```
+Run shell ```npm i``` (in project folder). This will install all dependencies.
 
 **Start app**
 
-```npm run start```
+Once dependencies are installed you can run shell ```npm run start```
+
+Alternatively, depending on your IDE (e.g. if you're using VSC), you can use **"play"** on **"start"** under **"NPM scripts"**.
 
 This will start the app on [localhost](http://localhost:3000) using port 3000
 
@@ -32,17 +36,16 @@ The first time you run the app you will be asked to provide database credentials
 
 **Manual installation**
 
-If for whatever reason the configuration setup doesn't work, or you prefer to configure the app manually you will need to:
+If for whatever reason the installer doesn't work, or you prefer to configure the app manually you will need to:
 
 - Install database using SQL in [create.sql](/backend/API/Endpoint/Configure/create.sql)
-- Make sure database settings are correct in [.env](/.env)
-- Set "configured" to `true` in [configured.json](/public/configured.json)
+- Make sure database settings are correct in [configured.json](/public/configured.json) and change "configured" to `true` (boolean)
 
 ## Assignment - u04 TO-DO-APP
 
 Requirement highlights:
 
-- **Frontend:** Any (React)
+- **Frontend:** Any (React used)
 - **Backend:** CRUD API using PHP & MySQL
 - **Extra:** Abillity to create user(s) that can create list(s) with task(s) in relational database
 
