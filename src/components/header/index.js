@@ -63,10 +63,10 @@ export default () => {
 					<article id="hint">
 						<h1 className="text-regular m-0">
 							Get <strong>CRUD<sup>*</sup></strong>ing
-					</h1>
+						</h1>
 						<p className="text-tiny">
 							<sup>*</sup>Create, Read, Update, Delete
-					</p>
+						</p>
 
 						{
 							context.user ?
@@ -110,11 +110,11 @@ export default () => {
 											</li>
 										</Router>
 									</ul>
-									<p className="mt-2">
-										<SmoothScroll to="howto" smooth>How to</SmoothScroll>
-									</p>
 								</>
 						}
+						<p className="mt-2">
+							<SmoothScroll to="howto" smooth>How to</SmoothScroll>
+						</p>
 					</article>
 				</div>
 			</header>

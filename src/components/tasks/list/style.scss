@@ -6,20 +6,24 @@
 #list-actions {
 	ul {
 		list-style: none;
-		display: flex;
-		justify-content: space-between;
+		display: grid;
+		// justify-content: space-between;
+		grid-template-columns: repeat(3, 1fr);
+		grid-template-areas: "new done delete" "select select select";
+		gap: 1rem 1rem;
 
 		li {
 			&.card-action {
-				position: relative;
-
 				button {
+					@extend .text-small;
+
 					&.add-card,
 					&.delete-card {
 						color: $white;
 					}
 
 					&.add-card {
+						grid-area: new;
 						background: $success;
 						border-color: transparent;
 						&:hover {
@@ -28,6 +32,7 @@
 					}
 
 					&.update-card {
+						grid-area: done;
 						background: $warning;
 						color: $black;
 						&:hover {
@@ -36,6 +41,7 @@
 					}
 
 					&.delete-card {
+						grid-area: delete;
 						background: $danger;
 						&:hover {
 							background: lighten($danger, 5);
@@ -54,32 +60,25 @@
 					}
 				}
 			}
-
+			&.select-list {
+				grid-area: select;
+			}
 			.svg-icon {
-				width: 1rem;
-				margin-left: 0.375rem;
+				width: 0.75rem;
+				margin-left: 0.165rem;
 			}
 		}
 	}
 }
 
 #tasks {
-	display: grid;
-	grid-template-columns: repeat(2, 1fr);
-	gap: 4rem;
-	grid-template-areas: "todo done";
-
 	#tasks-todo {
-		grid-area: todo;
 		.task-card {
-			// background: linear-gradient(to right, #34e89e, #0f3443);
 			background: $primary;
 		}
 	}
 
 	#tasks-done {
-		grid-area: done;
-
 		#empty-done {
 			display: flex;
 			align-items: center;
@@ -89,9 +88,44 @@
 			height: 80%;
 		}
 		.task-card {
-			// background: linear-gradient(to right, #29323c, #485563);
 			background: $smoke;
 			color: $six;
+		}
+	}
+}
+
+@include media-lg {
+	#list-actions {
+		ul {
+			grid-template-columns: repeat(4, 1fr);
+			grid-template-areas: "new done delete select";
+
+			li {
+				&.card-action {
+					button {
+						font-size: 1rem !important;
+					}
+				}
+				.svg-icon {
+					width: 1rem;
+					margin-left: 0.375rem;
+				}
+			}
+		}
+	}
+
+	#tasks {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 4rem;
+		grid-template-areas: "todo done";
+
+		#tasks-todo {
+			grid-area: todo;
+		}
+
+		#tasks-done {
+			grid-area: done;
 		}
 	}
 }

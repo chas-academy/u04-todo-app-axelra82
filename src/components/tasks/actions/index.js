@@ -45,7 +45,7 @@ export default ({
 					</button>
 				</li>
 
-				<li>
+				<li className="select-list">
 					<select defaultValue="DEFAULT" onChange={selectList}>
 						<option
 							value="DEFAULT"

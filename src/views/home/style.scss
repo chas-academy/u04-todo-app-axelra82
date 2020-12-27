@@ -6,8 +6,11 @@
 #list-actions {
 	ul {
 		list-style: none;
-		display: flex;
-		justify-content: space-between;
+		display: grid;
+		// justify-content: space-between;
+		grid-template-columns: repeat(3, 1fr);
+		grid-template-areas: "new done delete" "select select select";
+		gap: 0 1rem;
 
 		li {
 			&.card-action {
@@ -20,6 +23,7 @@
 					}
 
 					&.add-card {
+						grid-area: new;
 						background: $success;
 						border-color: transparent;
 						&:hover {
@@ -28,6 +32,7 @@
 					}
 
 					&.update-card {
+						grid-area: done;
 						background: $warning;
 						color: $black;
 						&:hover {
@@ -36,6 +41,7 @@
 					}
 
 					&.delete-card {
+						grid-area: delete;
 						background: $danger;
 						&:hover {
 							background: lighten($danger, 5);

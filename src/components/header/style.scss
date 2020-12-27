@@ -4,17 +4,23 @@
 @import "../../style/typography";
 
 header {
-	// https://uigradients.com/#CanYouFeelTheLoveTonight
 	background: linear-gradient(to right, #b06ab3, #4568dc);
 
 	.container {
+		display: grid;
+		grid-template-columns: 1fr;
+		grid-template-areas: "dodo" "hint";
+		gap: 2rem 0;
+
 		img {
+			grid-area: dodo;
 			width: 100%;
 		}
 
 		#hint {
+			grid-area: hint;
 			color: $white;
-			text-align: right;
+			text-align: left;
 			a {
 				color: $white;
 			}
@@ -24,19 +30,12 @@ header {
 
 @include media-lg {
 	.container {
-		display: grid;
 		grid-template-columns: repeat(2, 1fr);
-		column-gap: 2rem;
-		grid-template-areas:
-			"dodo hint"
-			"createBtn createBtn";
-
-		img {
-			grid-area: dodo;
-		}
+		grid-template-areas: "dodo hint" !important;
+		gap: 0 4rem !important;
 
 		#hint {
-			grid-area: hint;
+			text-align: right !important;
 		}
 	}
 }
