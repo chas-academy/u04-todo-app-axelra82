@@ -112,7 +112,7 @@ class Crud {
     public function update(){
 		
 		try{
-			$hasDone				= $this->table !== 'lists' && (!empty($this->done) || $this->done === 0);
+			$hasDone				= (!empty($this->done) || $this->done === 0);
 			if($hasDone){
 				$this->query		= "UPDATE 
 					`{$this->table}`

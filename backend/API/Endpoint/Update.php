@@ -32,7 +32,7 @@ if($connection){
 		$crud->id				= $data->id;
 		$crud->title			= $data->title;
 		$crud->description		= $data->description;
-		$crud->done				= (int) $data->done;
+		$crud->done				= $data->done;
 
 		// Update
 		$stmt 					= $crud->update();
