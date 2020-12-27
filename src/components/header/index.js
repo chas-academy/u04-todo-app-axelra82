@@ -118,6 +118,18 @@ export default () => {
 					</article>
 				</div>
 			</header>
+
+			{
+				context.user &&
+				<article className="container text-small pt-1 pb-0">
+					<p>
+						For the purpose of this assignment user login is persistant for 5 minutes. Simply login, come back after 5 minutes and you will be logged out (Alternatively you can use the logout option in the header). You can also login, close the browser window and open it up again, as long as you do it within 5 minutes you will still be logged in.
+					</p>
+					<p>
+						If you want to change the login persistence time you can edit line 33 in '/backend/Utils/Jwt.php'
+					</p>
+				</article>
+			}
 		</>
 	);
 }
