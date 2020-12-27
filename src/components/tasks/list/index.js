@@ -4,6 +4,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { TaskCard, } from '../';
 import ListActions from '../actions';
 import CreateForm from '../../create-form';
+import Emoji from '../../emoji';
 import api from '../../../api';
 import './style.scss';
 
@@ -20,7 +21,6 @@ export default ({
 	const [createForm, setCreateForm] = useState(false);
 	const [isSelected, setIsSelected] = useState([]);
 	const [isDisabled, setIsDisabled] = useState(true);
-	const [saveButton, setSaveButton] = useState(false);
 	const taskLists = useRef(null);
 	const table = 'tasks';
 
@@ -63,7 +63,7 @@ export default ({
 		setCreateForm(true);
 	}
 
-	const updateTask = async (changeState = false, ref = null) => {
+	const updateTask = async (changeState = false, ref = null, setSaveButton = null) => {
 
 		if (changeState) {
 			// Map selected array with promise array returned
@@ -103,7 +103,7 @@ export default ({
 		}
 	}
 
-	const saveTask = async (taskId, title, description) => {
+	const saveTask = async (taskId, title, description, setSaveButton) => {
 		const currTitle = title.current;
 		const currDescription = description.current;
 
@@ -222,7 +222,7 @@ export default ({
 			}} />
 			<div ref={taskLists} id="tasks">
 				<section id="tasks-todo">
-					<h1>To do</h1>
+					<h1>To do <Emoji props={{ label: 'nerd', emoji: '🤓' }} /></h1>
 					{createForm &&
 						<CreateForm props={{
 							table,
@@ -242,7 +242,6 @@ export default ({
 											selectCard,
 											updateTask,
 											saveTask,
-											saveButton,
 										}}
 									/>
 								);
@@ -257,7 +256,7 @@ export default ({
 					}
 				</section>
 				<section id="tasks-done">
-					<h1>Done</h1>
+					<h1>Done <Emoji props={{ label: 'star-struck', emoji: '🤩' }} /></h1>
 					{
 						doneList && doneList.length > 0 &&
 						doneList.map((task, i) => {
@@ -269,7 +268,6 @@ export default ({
 										selectCard,
 										updateTask,
 										saveTask,
-										saveButton,
 									}}
 								/>
 							);

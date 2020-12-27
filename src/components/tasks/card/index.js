@@ -1,5 +1,5 @@
 /* eslint-disable import/no-anonymous-default-export */
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import './style.scss';
 
 export default ({
@@ -8,7 +8,6 @@ export default ({
 		selectCard,
 		updateTask,
 		saveTask,
-		saveButton,
 	},
 }) => {
 
@@ -19,7 +18,7 @@ export default ({
 		createdAt,
 		updatedAt,
 	} = task;
-
+	const [saveButton, setSaveButton] = useState(false);
 	const titleRef = useRef();
 	const descriptionRef = useRef();
 	// Date format function
@@ -53,7 +52,7 @@ export default ({
 			<h1
 				ref={titleRef}
 				className="title"
-				onClick={() => updateTask(false, titleRef)}
+				onClick={() => updateTask(false, titleRef, setSaveButton)}
 			>
 				{title}
 			</h1>
@@ -71,12 +70,12 @@ export default ({
 			<p
 				ref={descriptionRef}
 				className="description"
-				onClick={() => updateTask(false, descriptionRef)}
+				onClick={() => updateTask(false, descriptionRef, setSaveButton)}
 			>
 				{description}
 			</p>
 			{saveButton &&
-				<button onClick={() => saveTask(id, titleRef, descriptionRef)}>save</button>
+				<button className="update-task" onClick={() => saveTask(id, titleRef, descriptionRef, setSaveButton)}>save</button>
 			}
 		</article>
 	);

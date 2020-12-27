@@ -13,8 +13,6 @@ $checkMark: $six;
 	padding: 1rem;
 	margin-bottom: 0.675rem;
 
-	// color: $white;
-
 	h1 {
 		margin: 0;
 		@extend .text-large;
@@ -25,6 +23,11 @@ $checkMark: $six;
 		@extend .text-light;
 	}
 
+	button.update-task {
+		background: $success;
+		color: $white;
+	}
+
 	.input-checkbox {
 		position: absolute;
 		top: 0;
@@ -32,9 +35,6 @@ $checkMark: $six;
 		height: 1.25rem;
 		width: 1.25rem;
 		border: none;
-		// -webkit-user-select: none;
-		// -moz-user-select: none;
-		// -ms-user-select: none;
 		user-select: none;
 		cursor: pointer;
 
@@ -47,7 +47,6 @@ $checkMark: $six;
 				height: 0.8rem;
 				width: 0.8rem;
 				background: $checkMark;
-				// background: $white;
 				border-radius: 100%;
 			}
 		}
@@ -60,15 +59,11 @@ $checkMark: $six;
 			height: 1rem;
 			width: 1rem;
 			border: $checkBox;
-			// border: 3px solid $white;
 			border-radius: 100%;
 		}
 	}
 
 	.custom-checkbox {
-		// -webkit-user-select: none;
-		// -moz-user-select: none;
-		// -ms-user-select: none;
 		user-select: none;
 		cursor: pointer;
 
@@ -93,7 +88,6 @@ $checkMark: $six;
 					left: 10%;
 					position: absolute;
 					background: $checkMark;
-					// background: $white;
 				}
 			}
 		}
@@ -105,23 +99,9 @@ $checkMark: $six;
 			height: 1.25rem;
 			width: 1.25rem;
 			border: $checkBox;
-			// border: 3px solid $white;
 			border-radius: 100%;
 		}
 	}
-
-	// .card-actions {
-	// 	position: absolute;
-	// 	display: flex;
-	// 	flex-direction: column;
-	// 	top: 0.675rem;
-	// 	right: 0.675rem;
-
-	// 	.svg-icon {
-	// 		width: 1.35rem;
-	// 		margin-bottom: 0.675rem;
-	// 	}
-	// }
 
 	&.animate-out {
 		@include animationFlipOut;
