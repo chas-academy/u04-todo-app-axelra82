@@ -10,13 +10,13 @@ Not to be confused with the dodo (Raphus cucullatus) near Madagascar in the Indi
 
 ## How to
 
-Clone repo from [REPO_URL] to your local `public_html` folder (make sure it's empty), e.g.
+Clone repo from ["chas-u04-todo" repo](https://github.com/axelra82/chas-u04-todo) to your local `public_html` folder (make sure the public html folder is empty), e.g.
 
-```cd /path/to/public_html/folder```
+```cd /path/to/public_html```
 
 Use "." (dot) to define current folder with git clone (_"cloning into an existing directory is only allowed if the directory is empty"_).
 
-```git clone [REPO_URL] .```
+```git clone https://github.com/axelra82/chas-u04-todo.git .```
 
 **Install dependencies**
 
@@ -28,7 +28,7 @@ Use "." (dot) to define current folder with git clone (_"cloning into an existin
 
 This will start the app on [localhost](http://localhost:3000) using port 3000
 
-The first time you run the app you will be asked to provide database credentials. Once done the app is ready.
+The first time you run the app you will be asked to provide database credentials. When the installer is done the app is ready to use.
 
 **Manual installation**
 
@@ -42,7 +42,7 @@ If for whatever reason the configuration setup doesn't work, or you prefer to co
 
 Requirement highlights:
 
-- **Frontend:** Any
+- **Frontend:** Any (React)
 - **Backend:** CRUD API using PHP & MySQL
 - **Extra:** Abillity to create user(s) that can create list(s) with task(s) in relational database
 
