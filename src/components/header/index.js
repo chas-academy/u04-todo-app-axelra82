@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { BrowserRouter as Router, useHistory, Link } from 'react-router-dom';
+import { Link as SmoothScroll } from 'react-scroll';
 import Dodo from '../../assets/graphics/dodo.svg';
 import Context from '../../context';
 import Emoji from '../emoji';
@@ -110,7 +111,7 @@ export default () => {
 										</Router>
 									</ul>
 									<p className="mt-2">
-										<a href="#howto">How to</a>
+										<SmoothScroll to="howto" smooth>How to</SmoothScroll>
 									</p>
 								</>
 						}

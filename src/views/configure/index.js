@@ -70,10 +70,7 @@ export default () => {
 				onSubmit={initConfigure}
 			>
 				<label htmlFor="host">
-					Host
-						<span className="text-small text-light">
-						(default: {defaultHost})
-						</span>
+					Host <span className="text-small text-light">(default: {defaultHost})</span>
 				</label>
 				<input
 					type="text"
@@ -84,10 +81,7 @@ export default () => {
 				/>
 
 				<label htmlFor="port">
-					Port
-						<span className="text-small text-light">
-						(default: {defaultPort})
-						</span>
+					Port <span className="text-small text-light">(default: {defaultPort})</span>
 				</label>
 				<input
 					type="text"
@@ -98,10 +92,7 @@ export default () => {
 				/>
 
 				<label htmlFor="username">
-					User
-						<span className="text-small text-light">
-						(default: {defaultUsername})
-						</span>
+					User <span className="text-small text-light">(default: {defaultUsername})</span>
 				</label>
 				<input
 					type="text"
@@ -112,10 +103,7 @@ export default () => {
 				/>
 
 				<label htmlFor="password">
-					Password
-						<span className="text-small text-light">
-						(default: {defaultPassword})
-						</span>
+					Password <span className="text-small text-light">(default: {defaultPassword})</span>
 				</label>
 				<input
 					type="password"

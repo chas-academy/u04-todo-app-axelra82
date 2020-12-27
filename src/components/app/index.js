@@ -12,6 +12,7 @@ import Modal from '../../components/modal';
 
 export default withRouter(() => {
 	const [context, setContext] = useState({
+		configured: false,
 		appUser: process.env.REACT_APP_APPNAME,
 		user: false,
 		userId: null,
@@ -66,11 +67,15 @@ export default withRouter(() => {
 				context.modal.open &&
 				<Modal />
 			}
-			<Header />
+			{context.configured &&
+				<Header />
+			}
 			<main id="main-container">
 				<Routes />
 			</main>
-			<Footer />
+			{context.configured &&
+				<Footer />
+			}
 		</Context.Provider>
 	);
 });
