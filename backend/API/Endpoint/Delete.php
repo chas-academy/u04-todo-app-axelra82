@@ -33,20 +33,20 @@ if($connection){
 		if($stmt){
 			echo $helpers->returnObject(
 				true,
-				"Deleted $crud->ids from $crud->table",
+				"Deleted $crud->ids from $crud->table"
 			);
 		}else{
 		
 			echo $helpers->returnObject(
 				false,
-				"Could not delete $crud->ids from $crud->table",
+				"Could not delete $crud->ids from $crud->table"
 			);
 		}
 	}else{
 		
 		echo $helpers->returnObject(
 			false,
-			"Missing data could not complete delete request",
+			"Missing data could not complete delete request"
 		);
 	}
 
@@ -55,7 +55,7 @@ if($connection){
 	// Return connection error
 	echo $helpers->returnObject(
 		false,
-		"Connection error",
+		"Connection error"
 	);
 
 }

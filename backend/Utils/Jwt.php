@@ -4,7 +4,7 @@ namespace NS\Utils;
 class Jwt{
 	// Init private variables
 	private $userId = null;
-	private $userName = null;
+	private $username = null;
 	private $header;
 	private $payload;
 	private $b64Header;
@@ -20,13 +20,7 @@ class Jwt{
 	public function __construct($userId, $username){
 		$this->userId		= $userId;
 		$this->username		= $username;
-		$this->header		= $header;
-		$this->payload		= $payload;
-		$this->b64Header	= $b64Header;
-		$this->b64Payload	= $b64Payload;
-		$this->signature	= $signature;
 		$this->secret		= "dodoRaphusCucullatus!isVerySecret";
-		$this->b64Signature	= $b64Signature;
 		// Timestamp
 		$this->now			= time();
 		// Expiration time 5min (now + 60(seconds) * 5(minutes))

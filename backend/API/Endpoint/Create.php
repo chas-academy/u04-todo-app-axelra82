@@ -33,14 +33,14 @@ if($connection){
 		
 		echo $helpers->returnObject(
 			true,
-			"Added $crud->title ($crud->description) in $crud->table",
+			"Added $crud->title ($crud->description) in $crud->table"
 		);
 
 	}else{
 		
 		echo $helpers->returnObject(
 			false,
-			"Could not create $crud->title ($crud->description) in $crud->table",
+			"Could not create $crud->title ($crud->description) in $crud->table"
 		);
 	}
 
@@ -49,7 +49,7 @@ if($connection){
 	// Return connection error
 	echo $helpers->returnObject(
 		false,
-		"Connection error",
+		"Connection error"
 	);
 
 }

@@ -18,7 +18,7 @@ $configure		= $db->configure();
 if($configure){
 	echo $helpers->returnObject(
 		true,
-		"Database created and connection established",
+		"Database created and connection established"
 	);
 	// Update configured state in react public folder
 	// Changing configured file triggers update in react
@@ -38,7 +38,7 @@ if($configure){
 	// Return nothing found
 	echo $helpers->returnObject(
 		false,
-		"Connection error",
+		"Connection error"
 	);
 	return;
 }

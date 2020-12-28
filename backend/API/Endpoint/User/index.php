@@ -38,7 +38,7 @@ if($connection){
 				
 				echo $helpers->returnObject(
 					false,
-					"Username '$user->username' already exists.",
+					"Username '$user->username' already exists."
 				);
 
 			}else{
@@ -50,14 +50,14 @@ if($connection){
 					echo $helpers->returnObject(
 						true,
 						"User created.",
-						$signup,
+						$signup
 					);
 
 				}else{
 					
 					echo $helpers->returnObject(
 						false,
-						"Unable to create user.",
+						"Unable to create user."
 					);
 				}
 			}
@@ -76,24 +76,24 @@ if($connection){
 							echo $helpers->returnObject(
 								true,
 								"User logged in.",
-								json_encode($jwt),
+								json_encode($jwt)
 							);
 						}else{
 							echo $helpers->returnObject(
 								true,
-								"Could not create toke. User logged in.",
+								"Could not create toke. User logged in."
 							);
 						}
 					}else{
 						echo $helpers->returnObject(
 							false,
-							"Incorrect password",
+							"Incorrect password"
 						);
 					}
 			}else{
 				echo $helpers->returnObject(
 					false,
-					"Username not found.",
+					"Username not found."
 				);
 			}
 		}
@@ -114,7 +114,7 @@ if($connection){
 
 		echo $helpers->returnObject(
 			false,
-			"Missing $missing",
+			"Missing $missing"
 		);
 	}
 }else{
@@ -122,7 +122,7 @@ if($connection){
 	// Return connection error
 	echo $helpers->returnObject(
 		false,
-		"Connection error",
+		"Connection error"
 	);
 
 }

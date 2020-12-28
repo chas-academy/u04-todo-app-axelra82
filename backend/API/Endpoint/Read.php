@@ -73,7 +73,7 @@ if($connection){
 				echo $helpers->returnObject(
 					true,
 					"$rowCount records found",
-					json_encode($tasksArr),
+					json_encode($tasksArr)
 				);
 			}
 			
@@ -97,20 +97,20 @@ if($connection){
 				echo $helpers->returnObject(
 					true,
 					"$rowCount records found",
-					json_encode($listsArr),
+					json_encode($listsArr)
 				);
 			}
 			
 		}else{
 			echo $helpers->returnObject(
 				true,
-				"No records found in {$crud->table}",
+				"No records found in {$crud->table}"
 			);
 		}
 	}else{
 		echo $helpers->returnObject(
 			false,
-			"Missing data could not complete read request.",
+			"Missing data could not complete read request."
 		);
 	}
 
@@ -119,7 +119,7 @@ if($connection){
 	// Return connection error
 	echo $helpers->returnObject(
 		false,
-		"Connection error",
+		"Connection error"
 	);
 
 }

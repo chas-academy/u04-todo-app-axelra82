@@ -39,20 +39,20 @@ if($connection){
 		if($stmt){
 			echo $helpers->returnObject(
 				true,
-				"Updated $crud->title (id: $crud->id) in $crud->table",
+				"Updated $crud->title (id: $crud->id) in $crud->table"
 			);
 		}else{
 		
 			echo $helpers->returnObject(
 				false,
-				"Could not update $data->title (id: $crud->id) in $crud->table",
+				"Could not update $data->title (id: $crud->id) in $crud->table"
 			);
 		}
 	}else{
 		
 		echo $helpers->returnObject(
 			false,
-			"Missing data could not complete update request.",
+			"Missing data could not complete update request."
 		);
 	}
 
@@ -61,7 +61,7 @@ if($connection){
 	// Return connection error
 	echo $helpers->returnObject(
 		false,
-		"Connection error",
+		"Connection error"
 	);
 
 }
