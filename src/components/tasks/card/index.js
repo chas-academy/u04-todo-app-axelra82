@@ -1,10 +1,12 @@
 /* eslint-disable import/no-anonymous-default-export */
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import CheckMark from './checkmark';
 import './style.scss';
 
 export default ({
 	props: {
 		task,
+		isSelected,
 		selectCard,
 		updateTask,
 		saveTask,
@@ -18,9 +20,15 @@ export default ({
 		createdAt,
 		updatedAt,
 	} = task;
+
+	// States
+	const [isChecked, setIsChecked] = useState(false);
 	const [saveButton, setSaveButton] = useState(false);
-	const titleRef = useRef();
-	const descriptionRef = useRef();
+
+	// Refs	
+	const titleRef = useRef(null);
+	const descriptionRef = useRef(null);
+
 	// Date format function
 	const formatDate = (date) => {
 
@@ -39,15 +47,26 @@ export default ({
 		return dateTime.toLocaleDateString("en-US", options);
 	}
 
+	useEffect(() => {
+		isSelected.length && isSelected.forEach(e => {
+			e.id === id && setIsChecked(true);
+		});
+	}, [isSelected])
+
 	return (
 		<article className="task-card">
+
 			<input
 				id={id}
 				type="checkbox"
 				name={`card-${id}`}
 				className="input-checkbox"
-				onChange={(e) => selectCard(e.target)}
+				onChange={e => {
+					selectCard(e.target);
+					setIsChecked(e.target.checked);
+				}}
 			/>
+			<CheckMark isChecked={isChecked} />
 
 			<h1
 				ref={titleRef}

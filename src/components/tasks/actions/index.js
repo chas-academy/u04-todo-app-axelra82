@@ -13,6 +13,7 @@ export default ({
 		doneList
 	}
 }) => {
+
 	return (
 		<div id="list-actions" className="mb-2">
 			<ul>
@@ -52,26 +53,28 @@ export default ({
 							defaultValue disabled
 						>
 							Select list
-									</option>
+						</option>
 						<option
 							disabled={toDoList && toDoList.length > 0 ? false : true}
-							value="todo">
+							value="todo"
+						>
 							To do
-									</option>
+						</option>
 						<option
 							disabled={doneList && doneList.length > 0 ? false : true}
 							value="done"
 						>
 							Done
-									</option>
+						</option>
 						<option
 							disabled={
 								(toDoList && toDoList.length > 0) &&
 									(doneList && doneList.length > 0)
 									? false : true}
-							value="both">
+							value="both"
+						>
 							Both
-									</option>
+						</option>
 					</select>
 				</li>
 

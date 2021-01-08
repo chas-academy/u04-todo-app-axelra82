@@ -1,5 +1,5 @@
 {
-    "configured": false,
+    "configured": true,
     "host": "localhost",
     "port": "8080",
     "username": "root",

@@ -19,8 +19,9 @@ export default ({
 	const [toDoList, setToDoList] = useState([]);
 	const [doneList, setDoneList] = useState([]);
 	const [createForm, setCreateForm] = useState(false);
-	const [isSelected, setIsSelected] = useState([]);
 	const [isDisabled, setIsDisabled] = useState(true);
+	const [isSelected, setIsSelected] = useState([]);
+
 	const taskLists = useRef(null);
 	const table = 'tasks';
 
@@ -158,11 +159,9 @@ export default ({
 					list: list,
 					card: cardEl,
 				}
-
 			]);
 		} else {
 			// Set checkbox to checked = false
-			// e.checked = false;
 			setIsSelected(isSelected.filter(object => object.id !== cardId));
 		}
 	}
@@ -190,6 +189,7 @@ export default ({
 				inputCheck.checked = true;
 				// Run select function for card
 				selectCard(inputCheck);
+
 			});
 		}
 
@@ -239,6 +239,7 @@ export default ({
 										key={`task-todo-${task.id}-${i}`}
 										props={{
 											task,
+											isSelected,
 											selectCard,
 											updateTask,
 											saveTask,
@@ -265,6 +266,7 @@ export default ({
 									key={`task-done-${task.id}-${i}`}
 									props={{
 										task,
+										isSelected,
 										selectCard,
 										updateTask,
 										saveTask,
