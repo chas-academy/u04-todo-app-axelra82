@@ -4,11 +4,13 @@ Not to be confused with the dodo (Raphus cucullatus) near Madagascar in the Indi
 
 ## Requirements
 
-- PHP
-- MySQL
+- PHP _(tested on version 7.3.9)_
+- MySQL _(tested on version 5.7.26)_
 - [Nodejs and NPM](https://nodejs.org/en/) (You will need this to run React)
 
 ## How to
+
+Make sure your web server is up and running (i.e. PHP works and you have local access to your database).
 
 Clone repo from ["chas-u04-todo"](https://github.com/axelra82/chas-u04-todo) to your servers local `public html` folder, e.g.
 
@@ -38,7 +40,7 @@ The first time you run the app you will be asked to provide database credentials
 
 If for whatever reason the installer doesn't work, or you prefer to configure the app manually you will need to:
 
-- Install database using SQL in [create.sql](/backend/API/Endpoint/Configure/create.sql)
+- Setup database using SQL in [create.sql](/backend/API/Endpoint/Configure/create.sql)
 - Make sure database settings are correct in [configured.json](/public/configured.json) and change "configured" to `true` (boolean)
 
 ## Assignment - u04 TO-DO-APP
