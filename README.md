@@ -20,7 +20,7 @@ Clone repo from ["chas-u04-todo"](https://github.com/chas-academy/u04-todo-app-a
 
 Use "." (dot) to define current folder with git clone (_"cloning into an existing directory is only allowed if the directory is empty"_).
 
-```git clone https://github.com/axelra82/chas-u04-todo.git .```
+```git clone https://github.com/chas-academy/u04-todo-app-axelra82 .```
 
 **Install dependencies**
 
