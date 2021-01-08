@@ -12,7 +12,7 @@ Not to be confused with the dodo (Raphus cucullatus) near Madagascar in the Indi
 
 Make sure your web server is up and running (i.e. PHP works and you have local access to your database).
 
-Clone repo from ["chas-u04-todo"](https://github.com/axelra82/chas-u04-todo) to your servers local `public html` folder, e.g.
+Clone repo from ["chas-u04-todo"](https://github.com/chas-academy/u04-todo-app-axelra82) to your servers local `public html` folder, e.g.
 
 ```cd /path/to/public_html```
 
