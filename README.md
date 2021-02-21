@@ -4,7 +4,7 @@ Not to be confused with the dodo (Raphus cucullatus) near Madagascar in the Indi
 
 # EDIT
 
-As per request this repo has been updated to use a controlled environment (docker).
+This repo has been updated to use a controlled environment (docker).
 
 ## How to
 
