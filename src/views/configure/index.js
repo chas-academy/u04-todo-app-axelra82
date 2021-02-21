@@ -60,9 +60,7 @@ export default () => {
 
 	const initConfigure = async (e) => {
 		e.preventDefault();
-		console.log(host, port, username, password);
-
-		const response = await api(
+		await api(
 			'configure',
 			{
 				host,
@@ -71,18 +69,29 @@ export default () => {
 				password
 			}
 		);
+		// console.log(host, port, username, password);
 
-		// If there are no errors page will refresh from
-		// config file update in backend else show error(s)
-		if (!response.success) {
+		// const response = await api(
+		// 	'configure',
+		// 	{
+		// 		host,
+		// 		port,
+		// 		username,
+		// 		password
+		// 	}
+		// );
 
-			// Troubleshooting
-			alert('Could not complete configuration. Se console log for details.');
-			console.log('Make sure all database values are correct.');
-			console.log('If error persists, try manual install as per "Manual installation" under How to in readme');
-			console.log('––––––––––––––––––––––––––––––––');
-			console.log(response.message);
-		}
+		// // If there are no errors page will refresh from
+		// // config file update in backend else show error(s)
+		// if (!response.success) {
+
+		// 	// Troubleshooting
+		// 	alert('Could not complete configuration. Se console log for details.');
+		// 	console.log('Make sure all database values are correct.');
+		// 	console.log('If error persists, try manual install as per "Manual installation" under How to in readme');
+		// 	console.log('––––––––––––––––––––––––––––––––');
+		// 	console.log(response.message);
+		// }
 	}
 	return (
 		<article className="container">

@@ -1,89 +1,94 @@
 <?php
 namespace NS\Utils;
+
 // Keep NS for core PHP classes
 use PDO;
 use PDOException;
 
-class Database{
-	private $host;
-	private $port;
-	private $database;
-	private $username;
-	private $password;
-	private $options;
-	private $connect = null;
-	private $configFile;
-	private $config;
-	
-	public function __construct(
-		$data = null
-	){
+class Database
+{
+    private $host;
+    private $port;
+    private $database;
+    private $username;
+    private $password;
+    private $options;
+    private $connect = null;
+    private $configFile;
+    private $config;
 
-		$this->configFile 	= dirname(__DIR__, 2).'/public/configured.json';
-		$this->config 		= json_decode(file_get_contents($this->configFile), true);
+    public function __construct(
+        $data = null
+    ) {
 
-		$this->database		= $this->config['database'];
-		$this->charset		= $this->config['charset'];
+        $this->configFile = dirname(__DIR__, 2) . '/public/configured.json';
+        $this->config = json_decode(file_get_contents($this->configFile), true);
 
-		$this->host			= empty($data) ? $this->config['host'] : $data->host;
-		$this->port			= empty($data) ? $this->config['port'] : $data->port;
-		$this->username		= empty($data) ? $this->config['username'] : $data->username;
-		$this->password		= empty($data) ? $this->config['password'] : $data->password;
-		
-		$this->options = [
-			PDO::ATTR_DEFAULT_FETCH_MODE	=> PDO::FETCH_ASSOC,
-			PDO::ATTR_ERRMODE				=> PDO::ERRMODE_EXCEPTION,
-		];
-	}
+        $this->database = $this->config['database'];
+        $this->charset = $this->config['charset'];
 
-	public function configure() {
+        // $this->host            = empty($data) ? $this->config['host'] : $data->host;
+        // $this->port            = empty($data) ? $this->config['port'] : $data->port;
+        $this->host = 'mysql';
+        $this->port = 3306;
+        $this->username = empty($data) ? $this->config['username'] : $data->username;
+        $this->password = empty($data) ? $this->config['password'] : $data->password;
 
-		// Test connection
-		try{
-			
-			$this->connect = new PDO(
-				"mysql:host={$this->host};",
-				$this->username,
-				$this->password,
-				$this->options
-			);
+        $this->options = [
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+        ];
+    }
 
-			// Connection is good
-			// Create database
-			$sql		= file_get_contents( dirname(__DIR__, 1) .'/API/Endpoint/Configure/create.sql');
-			// Prepare statement
-			$stmt		= $this->connect->prepare($sql);
-			// Execute statment
-			$stmt->execute();
-			
-			return true;
+    public function configure()
+    {
 
-		}catch (PDOException $e) {
-			
-			// Something isn't working
-			echo $e->getMessage();
-			return false;
-		}
-	}
+        // Test connection
+        try {
 
-	public function connection(){
+            $this->connect = new PDO(
+                "mysql:host={$this->host};port={$this->port}",
+                $this->username,
+                $this->password,
+                $this->options
+            );
 
-		try{
-			$this->connect = new PDO(
-				"mysql:host={$this->host};dbname={$this->database};charset={$this->charset}",
-				$this->username,
-				$this->password,
-				$this->options
-			);
+            // Connection is good
+            // Create database
+            $sql = file_get_contents(dirname(__DIR__, 1) . '/API/Endpoint/Configure/create.sql');
+            // Prepare statement
+            $stmt = $this->connect->prepare($sql);
+            // Execute statment
+            $stmt->execute();
 
-			return $this->connect;
+            return true;
 
-		}catch(PDOException $e){
-			
-			// Can't continue without connection
-			echo $e->getMessage();
-			return false;
-		}
-	}
+        } catch (PDOException $e) {
+
+            // Something isn't working
+            echo $e->getMessage();
+            return false;
+        }
+    }
+
+    public function connection()
+    {
+
+        try {
+            $this->connect = new PDO(
+                "mysql:host={$this->host};port={$this->port};dbname={$this->database};charset={$this->charset}",
+                $this->username,
+                $this->password,
+                $this->options
+            );
+
+            return $this->connect;
+
+        } catch (PDOException $e) {
+
+            // Can't continue without connection
+            echo $e->getMessage();
+            return false;
+        }
+    }
 }
-?>
