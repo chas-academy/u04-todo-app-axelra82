@@ -14,7 +14,7 @@ This repo has been updated to use a controlled environment (docker).
 
 This might take a couple of minutes (on the first run). All images will be downloaded, after everything is in place docker will start the containers.
 
-The app takes a little while to initiate (the `run npm start` command is run when the nodejs container is up).
+The app takes a little while to initiate (the `npm run start` command is run when the nodejs container is up).
 
 Once everything is up and running you will be able to visit [http://localhost:3000](http://localhost:3000) for the app.
 
